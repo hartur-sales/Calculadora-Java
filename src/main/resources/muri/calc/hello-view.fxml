@@ -9,10 +9,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="752.0" prefWidth="376.0" style="-fx-background-color: #17181a;" type="AnchorPane" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="muri.calc.HelloController">
+<AnchorPane prefHeight="752.0" prefWidth="376.0" style="-fx-background-color: #17181a;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="muri.calc.HelloController">
    <VBox alignment="BOTTOM_RIGHT" layoutX="34.0" layoutY="68.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32.0">
       <children>
-         <Label fx:id="resultadoTexto" alignment="CENTER" contentDisplay="CENTER" textAlignment="RIGHT" textFill="WHITE">
+         <Label fx:id="resultadoTexto" alignment="CENTER" contentDisplay="CENTER" text="82" textAlignment="RIGHT" textFill="WHITE">
             <font>
                <Font size="48.0" />
             </font>
@@ -68,4 +68,4 @@
          <RowConstraints />
       </rowConstraints>
    </GridPane>
-</fx:root>
+</AnchorPane>

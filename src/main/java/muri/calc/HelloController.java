@@ -21,4 +21,8 @@ public class HelloController {
     @FXML
     public Label resultadoTexto;
 
+    @FXML
+    private void initialize() {
+        //TODO
+    }
 }
