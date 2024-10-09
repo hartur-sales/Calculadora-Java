@@ -1,0 +1,39 @@
+.root {
+    -fx-background-color: #17181a;
+}
+.button {
+    -fx-background-color: #303136;
+    -fx-text-fill: #29a8ff;
+    -fx-font-size: 24;
+    -fx-background-radius: 12;
+}
+
+.button-operacao {
+    -fx-background-color: #1991ff;
+    -fx-text-fill: #a3d3ff;
+    -fx-font-size: 24;
+    -fx-background-radius: 12;
+}
+
+.button-igual {
+    -fx-background-color: #005db2;
+    -fc-text-fill: #24a5ff;
+    -fx-font-size: 24;
+}
+
+.button-maismenos {
+    -fx-background-color: #303136;
+    -fx-text-fill: #29a8ff;
+    -fx-font-size: 20;
+}
+
+.button-deletes {
+    -fx-background-color: #616161;
+    -fx-text-fill: #a5a5a5;
+    -fx-font-size: 24;
+}
+
+.label {
+    -fx-text-fill: #ffffff;
+}
+

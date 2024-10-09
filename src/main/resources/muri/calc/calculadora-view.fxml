@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="752.0" minWidth="376.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="muri.calc.HelloController">
+    <VBox alignment="BOTTOM_RIGHT" layoutX="34.0" layoutY="138.0" minHeight="130.0" minWidth="312.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="138.0">
+        <children>
+            <Label fx:id="resultadoTexto" alignment="CENTER" contentDisplay="CENTER" stylesheets="@calculadora.css" text="82" textAlignment="RIGHT" textFill="WHITE">
+                <font>
+                    <Font size="48.0" />
+                </font>
+            </Label>
+        </children>
+    </VBox>
+    <GridPane hgap="20" layoutX="32" layoutY="670" prefWidth="310.0" vgap="14" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="295.0">
+        <!-- Primeira linha  -->
+        <Button fx:id="quadradoBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62.0" minWidth="62.0" mnemonicParsing="false" styleClass="button-operacao" text="n²" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="porcentBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62.0" minWidth="62.0" mnemonicParsing="false" styleClass="button-operacao" text="\%" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="raizBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62.0" minWidth="62.0" mnemonicParsing="false" styleClass="button-operacao" text="√" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+
+        <!-- Segunda linha  -->
+        <Button fx:id="acBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="31.0" minWidth="62" styleClass="button-deletes" text="Ac" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="dividirBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-operacao" text="/" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="multiplicarBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-operacao" stylesheets="@calculadora.css" text="x" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="subtrairBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62.0" minWidth="62" styleClass="button-operacao" text="-" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+
+        <!-- Terceira linha -->
+        <Button fx:id="seteBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="7" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="oitoBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="8" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="noveBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="9" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+
+        <!-- Quarta linha -->
+        <Button fx:id="quatroBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="4" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="cincoBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="5" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="seisBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="6" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="somarBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62.0" minWidth="62" styleClass="button-operacao" stylesheets="@calculadora.css" text="+" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+
+        <!-- Quinta linha -->
+        <Button fx:id="umBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="doisBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="2" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="tresBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="3" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+
+        <!-- Sexta linha -->
+        <Button fx:id="alterarBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-maismenos" text="+/-" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="zeroBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="0" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="decimalBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="." GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="igualBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62.0" minWidth="62" styleClass="button-igual" text="=" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <padding>
+            <Insets top="12.0" />
+         </padding></Button>
+        <Button fx:id="apagarBotao" layoutX="258.0" layoutY="54.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="31.0" minWidth="62" styleClass="button-deletes" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@backspace.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+        <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+</AnchorPane>
