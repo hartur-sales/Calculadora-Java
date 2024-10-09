@@ -35,25 +35,25 @@
         <Button fx:id="subtrairBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62.0" minWidth="62" styleClass="button-operacao" text="-" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
 
         <!-- Terceira linha -->
-        <Button fx:id="seteBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="7" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="oitoBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="8" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="noveBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="9" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="seteBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-number" text="7" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="oitoBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-number" text="8" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="noveBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-number" text="9" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
 
         <!-- Quarta linha -->
-        <Button fx:id="quatroBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="4" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="cincoBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="5" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="seisBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="6" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="quatroBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-number" text="4" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="cincoBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-number" text="5" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="seisBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-number" text="6" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="somarBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62.0" minWidth="62" styleClass="button-operacao" stylesheets="@calculadora.css" text="+" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
 
         <!-- Quinta linha -->
-        <Button fx:id="umBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="doisBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="2" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="tresBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="3" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="umBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-number" text="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="doisBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-number" text="2" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="tresBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-number" text="3" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
 
         <!-- Sexta linha -->
         <Button fx:id="alterarBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-maismenos" text="+/-" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="zeroBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="0" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="decimalBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" text="." GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="zeroBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-number" text="0" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="decimalBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62" minWidth="62" styleClass="button-number" text="." GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="igualBotao" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="62.0" minWidth="62" styleClass="button-igual" text="=" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES">
          <GridPane.margin>
             <Insets />
