@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="muri.calc.HelloController">
-    <VBox alignment="BOTTOM_RIGHT" layoutX="34.0" layoutY="83.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32.39999999999998" AnchorPane.topAnchor="83.0">
+    <VBox alignment="BOTTOM_RIGHT" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32" AnchorPane.topAnchor="83.0">
       <VBox alignment="BOTTOM_RIGHT" prefHeight="51.0" prefWidth="292.0">
          <children>
             <Label fx:id="reviewTexto" styleClass="label-review" text="70 + 12 =" />
@@ -20,7 +20,7 @@
       </VBox>
       <VBox alignment="BOTTOM_RIGHT">
          <children>
-              <Label fx:id="resultadoTexto" alignment="CENTER" contentDisplay="CENTER" styleClass="label-resultado" stylesheets="@calculadora.css" text="82" textAlignment="RIGHT" textFill="WHITE">
+              <Label fx:id="resultadoTexto" alignment="CENTER" contentDisplay="CENTER" styleClass="label-resultado" stylesheets="@calculadora.css" text="82" textAlignment="RIGHT">
                   <font>
                       <Font size="48.0" />
                   </font>
