@@ -12,15 +12,28 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="muri.calc.HelloController">
-    <VBox alignment="BOTTOM_RIGHT" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32" AnchorPane.topAnchor="83.0">
-      <VBox alignment="BOTTOM_RIGHT" prefHeight="51.0" prefWidth="292.0">
+    <VBox alignment="BOTTOM_RIGHT" layoutY="28.0" prefHeight="210.0" prefWidth="292.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32" AnchorPane.topAnchor="28.0">
+      <VBox alignment="TOP_RIGHT" prefHeight="70.0" prefWidth="292.0">
+         <children>
+            <Button fx:id="temaBotao" mnemonicParsing="false" onAction="#mudarTema" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fx:id="imagemTema" fitHeight="90.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/light-mode.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+      <VBox alignment="BOTTOM_RIGHT" prefHeight="37.0" prefWidth="292.0">
          <children>
             <Label fx:id="reviewTexto" styleClass="label-review" text="70 + 12 =" />
          </children>
       </VBox>
       <VBox alignment="BOTTOM_RIGHT">
          <children>
-              <Label fx:id="resultadoTexto" alignment="CENTER" contentDisplay="CENTER" styleClass="label-resultado" stylesheets="@calculadora.css" text="82" textAlignment="RIGHT">
+              <Label fx:id="resultadoTexto" alignment="CENTER" contentDisplay="CENTER" styleClass="label-resultado" text="82" textAlignment="RIGHT">
                   <font>
                       <Font size="48.0" />
                   </font>
@@ -34,39 +47,40 @@
         <Button fx:id="porcentBotao" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="button-operacao" text="\%" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="raizBotao" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="button-operacao" text="√" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
 
-        <!-- Segunda linha  -->
+                 <!-- Segunda linha  -->
         <Button fx:id="acBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-deletes" text="Ac" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="dividirBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" text="/" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="multiplicarBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" stylesheets="@calculadora.css" text="x" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="subtrairBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" stylesheets="@calculadora.css" text="-" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="multiplicarBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" text="x" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="subtrairBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" text="-" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
 
-        <!-- Terceira linha -->
+                 <!-- Terceira linha -->
         <Button fx:id="seteBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="7" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="oitoBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="8" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="noveBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="9" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
 
-        <!-- Quarta linha -->
+                 <!-- Quarta linha -->
         <Button fx:id="quatroBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="4" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="cincoBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="5" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="seisBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="6" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="somarBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" stylesheets="@calculadora.css" text="+" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="somarBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" text="+" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
 
-        <!-- Quinta linha -->
+                 <!-- Quinta linha -->
         <Button fx:id="umBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="doisBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="2" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="tresBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="3" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
 
-        <!-- Sexta linha -->
+                 <!-- Sexta linha -->
         <Button fx:id="alterarBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number-maismenos" text="+/-" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="zeroBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="0" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="decimalBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="." GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
-      <Button fx:id="igualBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-igual" stylesheets="@calculadora.css" text="=" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+      <Button fx:id="igualBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-igual" text="=" GridPane.columnIndex="3" GridPane.rowIndex="5" />
         <Button fx:id="apagarBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-deletes" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
          <graphic>
-             <ImageView fitHeight="31.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-                 <Image url="@backspace.png" />
+             <ImageView fx:id="deleteImagem" fitHeight="31.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                 <Image url="@../../images/backspace.png" />
              </ImageView>
-         </graphic></Button>
+         </graphic>
+      </Button>
         <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints />

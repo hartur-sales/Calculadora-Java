@@ -47,8 +47,11 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(),376,692);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("calculadora.css")).toExternalForm());
 
+        HelloController controller = fxmlLoader.getController();
+        controller.setScene(scene);
+
         //adiciona o icone do programa
-        stage.getIcons().add(new Image(Objects.requireNonNull(HelloApplication.class.getResourceAsStream("icon.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(HelloApplication.class.getResourceAsStream("/images/icon.png"))));
         stage.setTitle("Calculadora");
         stage.setScene(scene);
         stage.show();

@@ -1,0 +1,98 @@
+.root {
+    -fx-background-color: #F7F8FB;
+}
+
+.button-number {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #1991FF;
+    -fx-font-size: 24;
+    -fx-background-radius: 12;
+    -fx-font-family: 'Hind Siliguri Medium';
+}
+
+.button-number:hover {
+    -fx-background-color: #cccccc;
+}
+
+.button-number:pressed {
+    -fx-background-color: #b3b3b3;
+}
+
+.button-operacao {
+    -fx-background-color: #51AAF9;
+    -fx-text-fill: #39414A;
+    -fx-font-size: 24;
+    -fx-background-radius: 12;
+    -fx-font-family: 'Hind Siliguri Medium';
+}
+
+.button-operacao:hover {
+    -fx-background-color: #4188c7;
+}
+
+.button-operacao:pressed {
+    -fx-background-color: #3977ae;
+}
+
+.button-igual {
+    -fx-background-color: #0688FF;
+    -fx-text-fill: #344352;
+    -fx-font-size: 24;
+    -fx-background-radius: 12;
+    -fx-font-family: 'Hind Siliguri Medium';
+}
+
+.button-igual:hover {
+    -fx-background-color: #056dcc;
+}
+
+.button-igual:pressed {
+    -fx-background-color: #045fb3;
+}
+
+.button-number-maismenos {
+    -fx-font-size: 20;
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #29a8ff;
+    -fx-background-radius: 12;
+    -fx-font-family: 'Hind Siliguri Medium';
+}
+
+.button-number-maismenos:hover {
+    -fx-background-color: #cccccc;
+}
+
+.button-number-maismenos:pressed {
+    -fx-background-color: #b3b3b3;
+}
+
+.button-deletes {
+    -fx-background-color: #C7C7C7;
+    -fx-text-fill: #17181a;
+    -fx-alignment: center;
+    -fx-font-size: 24;
+    -fx-background-radius: 12;
+    -fx-font-family: 'Hind Siliguri Medium';
+}
+
+.button-deletes:hover {
+    -fx-background-color: #c2b799;
+}
+
+.button-deletes:pressed {
+    -fx-background-color: #a9a086;
+}
+
+.label {
+    -fx-text-fill: #17181a;
+    -fx-font-family: 'Hind Siliguri Medium';
+}
+
+.label-resultado {
+    -fx-font-size: 70;
+}
+
+.label-review {
+    -fx-font-size: 24;
+}
+

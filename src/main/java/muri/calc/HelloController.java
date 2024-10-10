@@ -17,9 +17,15 @@
 
 package muri.calc;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.util.Objects;
 
 /**
  * @author Murilo Nunes & Hartur Sales
@@ -28,6 +34,7 @@ import javafx.scene.control.Label;
  */
 
 public class HelloController {
+    private Scene scene;
 
     //botoes de operaçao
     @FXML
@@ -39,16 +46,52 @@ public class HelloController {
 
     //botoes de gerenciamento
     @FXML
-    public Button alterarBotao, acBotao, decimalBotao, apagarBotao;
+    public Button alterarBotao, acBotao, decimalBotao, apagarBotao, temaBotao;
 
     @FXML
     public Label resultadoTexto, reviewTexto;
 
     @FXML
+    public ImageView imagemTema, deleteImagem;
+
+    private final String temaEscuro = Objects.requireNonNull(getClass().getResource("calculadora.css")).toExternalForm();
+    private final String temaClaro = Objects.requireNonNull(getClass().getResource("calculadora-branca.css")).toExternalForm();
+    private boolean temaAtual = true; //true para escuro, false para claro
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    @FXML
     private void initialize() {
         //resultadoTexto.setText("");
         //reviewTexto.setText("");
-        noveBotao.getStyleClass().add("button");
         //TODO
+    }
+
+    public void mudarTema(ActionEvent actionEvent) {
+        if (temaAtual) {
+            //tema claro
+            aplicarTemaClaro();
+        } else {
+            //tema escuro
+            aplicarTemaEscuro();
+        }
+        //muda a variavel do tema
+        temaAtual = !temaAtual;
+    }
+
+    public void aplicarTemaClaro() {
+        imagemTema.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/dark-mode.png"))));
+        scene.getStylesheets().remove(temaEscuro);
+        scene.getStylesheets().add(temaClaro);
+        deleteImagem.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/backspace-dark.png"))));
+    }
+
+    public void aplicarTemaEscuro() {
+        imagemTema.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/light-mode.png"))));
+        scene.getStylesheets().remove(temaClaro);
+        scene.getStylesheets().add(temaEscuro);
+        deleteImagem.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/backspace.png"))));
     }
 }
