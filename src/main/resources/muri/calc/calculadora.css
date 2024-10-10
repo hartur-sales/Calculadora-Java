@@ -7,6 +7,7 @@
     -fx-text-fill: #29a8ff;
     -fx-font-size: 24;
     -fx-background-radius: 12;
+    -fx-font-family: 'Hind Siliguri Medium';
 }
 
 .button-number:hover {
@@ -22,6 +23,7 @@
     -fx-text-fill: #C4DFFD;
     -fx-font-size: 24;
     -fx-background-radius: 12;
+    -fx-font-family: 'Hind Siliguri Medium';
 }
 
 .button-operacao:hover {
@@ -37,6 +39,7 @@
     -fx-text-fill: #a3d3ff;
     -fx-font-size: 24;
     -fx-background-radius: 12;
+    -fx-font-family: 'Hind Siliguri Medium';
 }
 
 .button-igual:hover {
@@ -52,6 +55,7 @@
     -fx-background-color: #303136;
     -fx-text-fill: #29a8ff;
     -fx-background-radius: 12;
+    -fx-font-family: 'Hind Siliguri Medium';
 }
 
 .button-number-maismenos:hover {
@@ -68,6 +72,7 @@
     -fx-alignment: center;
     -fx-font-size: 24;
     -fx-background-radius: 12;
+    -fx-font-family: 'Hind Siliguri Medium';
 }
 
 .button-deletes:hover {
@@ -80,5 +85,7 @@
 
 .label {
     -fx-text-fill: #ffffff;
+    -fx-font-size: 70;
+    -fx-font-family: 'Hind Siliguri Medium';
 }
 

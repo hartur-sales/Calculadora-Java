@@ -23,7 +23,7 @@ public class HelloController {
 
     @FXML
     private void initialize() {
-        resultadoTexto.setText("");
+        //resultadoTexto.setText("");
         noveBotao.getStyleClass().add("button");
         //TODO
     }
