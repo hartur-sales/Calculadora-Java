@@ -83,9 +83,15 @@
     -fx-background-color: #444444;
 }
 
-.label {
+.label-resultado {
     -fx-text-fill: #ffffff;
     -fx-font-size: 70;
+    -fx-font-family: 'Hind Siliguri Medium';
+}
+
+.label-review {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 24;
     -fx-font-family: 'Hind Siliguri Medium';
 }
 

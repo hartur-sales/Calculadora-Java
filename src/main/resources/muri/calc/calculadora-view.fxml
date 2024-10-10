@@ -12,16 +12,23 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="muri.calc.HelloController">
-    <VBox alignment="BOTTOM_RIGHT" layoutX="34.0" layoutY="138.0" minHeight="130.0" minWidth="312.0"
-          AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="138.0">
-        <Label fx:id="resultadoTexto" alignment="CENTER" contentDisplay="CENTER" stylesheets="@calculadora.css"
-               text="82" textAlignment="RIGHT" textFill="WHITE">
-            <font>
-                <Font size="48.0"/>
-            </font>
-        </Label>
+    <VBox alignment="BOTTOM_RIGHT" layoutX="34.0" layoutY="83.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32.39999999999998" AnchorPane.topAnchor="83.0">
+      <VBox alignment="BOTTOM_RIGHT" prefHeight="51.0" prefWidth="292.0">
+         <children>
+            <Label fx:id="reviewTexto" styleClass="label-review" text="70 + 12 =" />
+         </children>
+      </VBox>
+      <VBox alignment="BOTTOM_RIGHT">
+         <children>
+              <Label fx:id="resultadoTexto" alignment="CENTER" contentDisplay="CENTER" styleClass="label-resultado" stylesheets="@calculadora.css" text="82" textAlignment="RIGHT" textFill="WHITE">
+                  <font>
+                      <Font size="48.0" />
+                  </font>
+              </Label>
+         </children>
+      </VBox>
     </VBox>
-    <GridPane hgap="20" vgap="14" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="295.0">
+    <GridPane hgap="20" layoutX="34.0" layoutY="238.0" vgap="14" AnchorPane.bottomAnchor="90.79999999999995" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32.39999999999998" AnchorPane.topAnchor="238.0">
         <!-- Primeira linha  -->
         <Button fx:id="quadradoBotao" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="button-operacao" text="n²" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="porcentBotao" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="button-operacao" text="\%" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
@@ -57,7 +64,7 @@
         <Button fx:id="apagarBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-deletes" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
          <graphic>
              <ImageView fitHeight="31.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-                 <Image url="@backspace.png"/>
+                 <Image url="@backspace.png" />
              </ImageView>
          </graphic></Button>
         <columnConstraints>

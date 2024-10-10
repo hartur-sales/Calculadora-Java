@@ -22,7 +22,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 /**
- *
  * @author Murilo Nunes & Hartur Sales
  * @date 08/10/2024
  * @brief Class HelloController
@@ -43,11 +42,12 @@ public class HelloController {
     public Button alterarBotao, acBotao, decimalBotao, apagarBotao;
 
     @FXML
-    public Label resultadoTexto;
+    public Label resultadoTexto, reviewTexto;
 
     @FXML
     private void initialize() {
         //resultadoTexto.setText("");
+        //reviewTexto.setText("");
         noveBotao.getStyleClass().add("button");
         //TODO
     }
