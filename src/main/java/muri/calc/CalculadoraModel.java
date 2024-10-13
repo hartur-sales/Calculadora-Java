@@ -26,45 +26,117 @@ import java.util.ArrayList;
  */
 
 public class CalculadoraModel {
-    private double primeiroValor;
-    private String operador;
-    private double valorSeguinte;
+    private Double num1;
+    private Character operador;
+    private Double num2;
+    private boolean operadorSelecionado = false;
 
-    private ArrayList<String> calculos = new ArrayList<>();
 
-    public ArrayList<String> getCalculos() {
-        return calculos;
+
+//    private ArrayList<String> calculos = new ArrayList<>();
+
+    //getters setters add remove
+
+//    public ArrayList<String> getCalculos() {
+//        return calculos;
+//    }
+//
+//    public void addCalculo(String calculadoraModel) {
+//        calculos.add(calculadoraModel);
+//    }
+//
+//    public void removeCalculo(String calculadoraModel) {
+//        calculos.remove(calculadoraModel);
+//    }
+
+    public double getNum1() {
+        return num1;
     }
 
-    public void addCalculo(String calculadoraModel) {
-        calculos.add(calculadoraModel);
+    public void setNum1(double num1) {
+        this.num1 = num1;
     }
 
-    public void removeCalculo(String calculadoraModel) {
-        calculos.remove(calculadoraModel);
-    }
-
-    public double getPrimeiroValor() {
-        return primeiroValor;
-    }
-
-    public void setPrimeiroValor(double primeiroValor) {
-        this.primeiroValor = primeiroValor;
-    }
-
-    public String getOperador() {
+    public Character getOperador() {
         return operador;
     }
 
-    public void setOperador(String operador) {
+    public void setOperador(Character operador) {
         this.operador = operador;
     }
 
-    public double getValorSeguinte() {
-        return valorSeguinte;
+    public double getNum2() {
+        return num2;
     }
 
-    public void setValorSeguinte(double valorSeguinte) {
-        this.valorSeguinte = valorSeguinte;
+    public void setNum2(double num2) {
+        this.num2 = num2;
     }
+
+    public boolean isOperadorSelecionado() {
+        return operadorSelecionado;
+    }
+
+    public void setOperadorSelecionado(boolean operadorSelecionado) {
+        this.operadorSelecionado = operadorSelecionado;
+    }
+
+    //agora os metodos usados pela calculadora
+    public double somar(double num1, double num2) {
+        return num1 + num2;
+    }
+
+    public double subtrair(double num1, double num2) {
+        return num1 - num2;
+    }
+
+    public double dividir(double num1, double num2) {
+        double divisao = num1 / num2;
+        if (num2 == 0) {
+            divisao = 0;
+        }
+        return divisao;
+    }
+
+    public double multiplicar(double num1, double num2) {
+        return num1 * num2;
+    }
+
+    public double calcularRaiz(double valor) {
+        return Math.sqrt(valor);
+    }
+
+
+    //entre dois valores
+//    public double elevarPotencia(double base, double expoente) {
+//        return Math.pow(base, expoente);
+//    }
+
+    //ao quadrado
+    public double elevarQuadrado(double valor) {
+        return Math.pow(valor, 2);
+    }
+
+
+//    public double calcularPctDoisValores(double num1, double num2) {
+//        return (num1 / num2) * 100;
+//    }
+
+    public double calcularPctDeUm(double valor, double percentual) {
+        return valor * (percentual / 100);
+    }
+
+
+    public double mostrarResultado(double num1, char operador, double num2) {
+        return switch (operador) {
+            case '+' -> somar(num1, num2);
+            case '-' -> subtrair(num1, num2);
+            case '*' -> multiplicar(num1, num2);
+            case '/' -> dividir(num1, num2);
+            case 'e' -> elevarQuadrado(num1);
+            case 'p' -> calcularPctDeUm(num1, num2);
+            default -> throw new IllegalArgumentException("Operação desconhecida: " + operador);
+        };
+    }
+
 }
