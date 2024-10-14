@@ -14,22 +14,27 @@
     <padding>
         <Insets bottom="32.0" left="34.0" right="32.0" top="12.0" />
     </padding>
-    <VBox alignment="TOP_RIGHT">
-        <Button fx:id="botaoTema" mnemonicParsing="false" onAction="#mudarTema"
-                style="-fx-background-color: transparent;">
+    <VBox alignment="TOP_RIGHT" VBox.vgrow="ALWAYS">
+        <Button fx:id="botaoTema" mnemonicParsing="false" onAction="#mudarTema" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
             <graphic>
                 <ImageView fx:id="imagemTema" fitHeight="90.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../../images/light-mode.png"/>
+                    <Image url="@../../images/light-mode.png" />
                 </ImageView>
             </graphic>
          <VBox.margin>
-             <Insets/>
+             <Insets />
          </VBox.margin>
         </Button>
     </VBox>
     <VBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
-        <Label fx:id="reviewTexto" styleClass="label-review" text="70 + 12 =" />
-        <Label fx:id="resultadoTexto" styleClass="label-resultado" text="82" />
+        <Label fx:id="reviewTexto" styleClass="label-review" text="70 + 12 =" VBox.vgrow="ALWAYS" />
+        <Label fx:id="resultadoTexto" styleClass="label-resultado" text="82" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="-24.0" top="-24.0" />
+         </padding></Label>
     </VBox>
     <GridPane hgap="20.0" vgap="14.0" VBox.vgrow="ALWAYS">
         <Button fx:id="botaoQuadrado" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="button-operacao" text="n²" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
