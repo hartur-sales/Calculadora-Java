@@ -40,15 +40,15 @@ public class HelloController {
 
     //botoes de operaçao
     @FXML
-    public Button dividirBotao, multiplicarBotao, subtrairBotao, somarBotao, igualBotao, quadradoBotao, porcentBotao, raizBotao;
+    public Button botaoDividir, botaoMultiplicar, botaoSubtrair, botaoSomar, botaoIgual, botaoQuadrado, botaoPorcent, raizBotao;
 
     //botoes de numeros
     @FXML
-    public Button botao9, botao8, botao7, botao6, botao5, botao4, botao3, botao2, botao1, botao0;
+    public Button botaoNove, botaoOito, botaoSete, botaoSeis, botaoCinco, botaoQuatro, botaoTres, botaoDois, botaoUm, botaoZero;
 
     //botoes de gerenciamento
     @FXML
-    public Button mudarSinalBotao, acBotao, decimalBotao, apagarBotao, temaBotao;
+    public Button botaoMudarSinal, botaoAc, botaoDecimal, botaoApagar, botaoTema;
     //foi           //foi       //foi           //foi
 
     @FXML
@@ -101,43 +101,43 @@ public class HelloController {
     //qual botão foi clicado
     public void botaoClicado(ActionEvent click) {
         //botoes numericos
-        if (click.getSource() == botao0) {
+        if (click.getSource() == botaoZero) {
             resultadoTexto.setText(resultadoTexto.getText() + "0");
         }
-        if (click.getSource() == botao1) {
+        if (click.getSource() == botaoUm) {
             resultadoTexto.setText(resultadoTexto.getText() + "1");
         }
-        if (click.getSource() == botao2) {
+        if (click.getSource() == botaoDois) {
             resultadoTexto.setText(resultadoTexto.getText() + "2");
         }
-        if (click.getSource() == botao3) {
+        if (click.getSource() == botaoTres) {
             resultadoTexto.setText(resultadoTexto.getText() + "3");
         }
-        if (click.getSource() == botao4) {
+        if (click.getSource() == botaoQuatro) {
             resultadoTexto.setText(resultadoTexto.getText() + "4");
         }
-        if (click.getSource() == botao5) {
+        if (click.getSource() == botaoCinco) {
             resultadoTexto.setText(resultadoTexto.getText() + "5");
         }
-        if (click.getSource() == botao6) {
+        if (click.getSource() == botaoSeis) {
             resultadoTexto.setText(resultadoTexto.getText() + "6");
         }
-        if (click.getSource() == botao7) {
+        if (click.getSource() == botaoSete) {
             resultadoTexto.setText(resultadoTexto.getText() + "7");
         }
-        if (click.getSource() == botao8) {
+        if (click.getSource() == botaoOito) {
             resultadoTexto.setText(resultadoTexto.getText() + "8");
         }
-        if (click.getSource() == botao9) {
+        if (click.getSource() == botaoNove) {
             resultadoTexto.setText(resultadoTexto.getText() + "9");
         }
 
         //botoes de gerenciamento
-        if (click.getSource() == decimalBotao) {
+        if (click.getSource() == botaoDecimal) {
             resultadoTexto.setText(resultadoTexto.getText() + ".");
         }
 
-        if (click.getSource() == mudarSinalBotao) {
+        if (click.getSource() == botaoMudarSinal) {
             if (calc.isOperadorSelecionado()) {
                 double numero2 = calc.getNum2() * (-1);
                 calc.setNum2(numero2);
@@ -149,7 +149,7 @@ public class HelloController {
             }
         }
 
-        if (click.getSource() == acBotao) {
+        if (click.getSource() == botaoAc) {
             calc.setNum1(0);
             calc.setNum2(0);
             calc.setOperador(null);
@@ -157,7 +157,7 @@ public class HelloController {
             resultadoTexto.setText("");
         }
 
-        if (click.getSource() == apagarBotao) {
+        if (click.getSource() == botaoApagar) {
             String numeroDigitado = resultadoTexto.getText();
             if (!numeroDigitado.isEmpty()) {
                 String novoTexto = numeroDigitado.substring(0, numeroDigitado.length() - 1);
@@ -167,7 +167,7 @@ public class HelloController {
         }
 
         //botoes de operaçao
-        if (click.getSource() == somarBotao) {
+        if (click.getSource() == botaoSomar) {
             if (!calc.isOperadorSelecionado()) {
                 calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
                 calc.setOperador('+');

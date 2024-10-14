@@ -1,77 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="muri.calc.HelloController">
-    <VBox alignment="BOTTOM_RIGHT" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32" AnchorPane.topAnchor="28.0">
-      <Button fx:id="temaBotao" mnemonicParsing="false" onAction="#mudarTema" style="-fx-background-color: transparent;">
-         <graphic>
-             <ImageView fx:id="imagemTema" fitHeight="90.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                 <Image url="@../../images/light-mode.png"/>
-             </ImageView>
-         </graphic>
-      </Button>
-      <Label fx:id="reviewTexto" styleClass="label-review" text="70 + 12 =" />
-        <Label fx:id="resultadoTexto" alignment="CENTER" contentDisplay="CENTER" styleClass="label-resultado" text="82" textAlignment="RIGHT" VBox.vgrow="SOMETIMES">
-            <font>
-                <Font size="48.0" />
-            </font>
-        </Label>
+<VBox maxHeight="Infinity" maxWidth="Infinity" spacing="15.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="muri.calc.HelloController">
+    <padding>
+        <Insets bottom="32.0" left="34.0" right="32.0" top="12.0" />
+    </padding>
+    <VBox alignment="TOP_RIGHT">
+        <Button fx:id="botaoTema" mnemonicParsing="false" onAction="#mudarTema"
+                style="-fx-background-color: transparent;">
+            <graphic>
+                <ImageView fx:id="imagemTema" fitHeight="90.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../../images/light-mode.png"/>
+                </ImageView>
+            </graphic>
+         <VBox.margin>
+             <Insets/>
+         </VBox.margin>
+        </Button>
     </VBox>
-    <GridPane hgap="20" vgap="14" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="238.0">
-        <!-- Primeira linha  -->
-        <Button fx:id="quadradoBotao" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="button-operacao" text="n²" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="porcentBotao" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="button-operacao" text="\%" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+    <VBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
+        <Label fx:id="reviewTexto" styleClass="label-review" text="70 + 12 =" />
+        <Label fx:id="resultadoTexto" styleClass="label-resultado" text="82" />
+    </VBox>
+    <GridPane hgap="20.0" vgap="14.0" VBox.vgrow="ALWAYS">
+        <Button fx:id="botaoQuadrado" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="button-operacao" text="n²" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoPorcent" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="button-operacao" text="\%" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="raizBotao" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="button-operacao" text="√" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
 
-                 <!-- Segunda linha  -->
-        <Button fx:id="acBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-deletes" text="Ac" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="dividirBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" text="/" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="multiplicarBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" text="x" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="subtrairBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" text="-" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoAc" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-deletes" text="Ac" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoDividir" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" text="/" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoMultiplicar" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" text="x" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoSubtrair" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" text="-" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
 
-                 <!-- Terceira linha -->
-        <Button fx:id="seteBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="7" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="oitoBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="8" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="noveBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="9" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoSete" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="7" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoOito" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="8" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoNove" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="9" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
 
-                 <!-- Quarta linha -->
-        <Button fx:id="quatroBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="4" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="cincoBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="5" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="seisBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="6" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="somarBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" text="+" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoQuatro" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="4" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoCinco" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="5" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoSeis" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="6" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoSomar" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-operacao" text="+" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
 
-                 <!-- Quinta linha -->
-        <Button fx:id="umBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="doisBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="2" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="tresBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="3" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoUm" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoDois" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="2" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoTres" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="3" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
 
-                 <!-- Sexta linha -->
-        <Button fx:id="alterarBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number-maismenos" text="+/-" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="zeroBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="0" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
-        <Button fx:id="decimalBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="." GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
-      <Button fx:id="igualBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-igual" text="=" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-        <Button fx:id="apagarBotao" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-deletes" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+        <Button fx:id="botaoMudarSinal" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number-maismenos" text="+/-" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoZero" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="0" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoDecimal" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-number" text="." GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoIgual" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-igual" text="=" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+        <Button fx:id="botaoApagar" maxHeight="Infinity" maxWidth="Infinity" styleClass="button-deletes" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
          <graphic>
              <ImageView fx:id="deleteImagem" fitHeight="31.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                  <Image url="@../../images/backspace.png" />
              </ImageView>
          </graphic>
-      </Button>
+        </Button>
         <columnConstraints>
-            <ColumnConstraints percentWidth="25" />
-            <ColumnConstraints percentWidth="25" />
-            <ColumnConstraints percentWidth="25" />
-            <ColumnConstraints percentWidth="25" />
+            <ColumnConstraints percentWidth="25.0" />
+            <ColumnConstraints percentWidth="25.0" />
+            <ColumnConstraints percentWidth="25.0" />
+            <ColumnConstraints percentWidth="25.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints />
@@ -83,4 +81,4 @@
             <RowConstraints />
         </rowConstraints>
     </GridPane>
-</AnchorPane>
+</VBox>
