@@ -45,7 +45,7 @@ public class HelloApplication extends Application {
         //carregar o fxml
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("calculadora-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("calculadora.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles/calculadora.css")).toExternalForm());
 
         HelloController controller = fxmlLoader.getController();
         controller.setScene(scene);

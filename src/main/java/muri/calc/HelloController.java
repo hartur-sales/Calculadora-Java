@@ -57,8 +57,8 @@ public class HelloController {
     @FXML
     public ImageView imagemTema, deleteImagem;
 
-    private final String temaEscuro = Objects.requireNonNull(getClass().getResource("calculadora.css")).toExternalForm();
-    private final String temaClaro = Objects.requireNonNull(getClass().getResource("calculadora-branca.css")).toExternalForm();
+    private final String temaEscuro = Objects.requireNonNull(getClass().getResource("/styles/calculadora.css")).toExternalForm();
+    private final String temaClaro = Objects.requireNonNull(getClass().getResource("/styles/calculadora-branca.css")).toExternalForm();
     private boolean temaAtual = true; //true para escuro, false para claro
 
     public void setScene(Scene scene) {
