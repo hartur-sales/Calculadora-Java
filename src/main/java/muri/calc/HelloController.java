@@ -49,6 +49,7 @@ public class HelloController {
     //botoes de gerenciamento
     @FXML
     public Button mudarSinalBotao, acBotao, decimalBotao, apagarBotao, temaBotao;
+    //foi           //foi       //foi           //foi
 
     @FXML
     public Label resultadoTexto, reviewTexto;
@@ -135,6 +136,7 @@ public class HelloController {
         if (click.getSource() == decimalBotao) {
             resultadoTexto.setText(resultadoTexto.getText() + ".");
         }
+
         if (click.getSource() == mudarSinalBotao) {
             if (calc.isOperadorSelecionado()) {
                 double numero2 = calc.getNum2() * (-1);
@@ -144,6 +146,33 @@ public class HelloController {
                 double numero1 = calc.getNum1() * (-1);
                 calc.setNum1(numero1);
                 resultadoTexto.setText(String.valueOf(numero1));
+            }
+        }
+
+        if (click.getSource() == acBotao) {
+            calc.setNum1(0);
+            calc.setNum2(0);
+            calc.setOperador(null);
+            calc.setOperadorSelecionado(false);
+            resultadoTexto.setText("");
+        }
+
+        if (click.getSource() == apagarBotao) {
+            String numeroDigitado = resultadoTexto.getText();
+            if (!numeroDigitado.isEmpty()) {
+                String novoTexto = numeroDigitado.substring(0, numeroDigitado.length() - 1);
+                //substring criando uma nova string só que nao tem o ultimo caracter
+                resultadoTexto.setText(novoTexto);
+            }
+        }
+
+        //botoes de operaçao
+        if (click.getSource() == somarBotao) {
+            if (!calc.isOperadorSelecionado()) {
+                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
+                calc.setOperador('+');
+                calc.setOperadorSelecionado(true);
+            } else {
             }
         }
 
