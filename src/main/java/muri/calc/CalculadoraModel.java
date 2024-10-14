@@ -31,8 +31,6 @@ public class CalculadoraModel {
     private Double num2;
     private boolean operadorSelecionado = false;
 
-
-
 //    private ArrayList<String> calculos = new ArrayList<>();
 
     //getters setters add remove
@@ -117,17 +115,16 @@ public class CalculadoraModel {
         return Math.pow(valor, 2);
     }
 
-
-//    public double calcularPctDoisValores(double num1, double num2) {
-//        return (num1 / num2) * 100;
-//    }
+    public double calcularPctAumentado(double valor, double percentual) {
+        return valor * (1 + percentual / 100);
+    }
 
     public double calcularPctDeUm(double valor, double percentual) {
         return valor * (percentual / 100);
     }
 
-
     public double mostrarResultado(double num1, char operador, double num2) {
+        //era um switch que ao inves de break, tinha return, isso é só uma recomendaçao da IDE
         return switch (operador) {
             case '+' -> somar(num1, num2);
             case '-' -> subtrair(num1, num2);
@@ -135,6 +132,7 @@ public class CalculadoraModel {
             case '/' -> dividir(num1, num2);
             case 'e' -> elevarQuadrado(num1);
             case 'p' -> calcularPctDeUm(num1, num2);
+            //tá faltando o outro de porcentagem
             default -> throw new IllegalArgumentException("Operação desconhecida: " + operador);
         };
     }
