@@ -49,7 +49,6 @@ public class HelloController {
     //botoes de gerenciamento
     @FXML
     public Button botaoMudarSinal, botaoAc, botaoDecimal, botaoApagar, botaoTema;
-    //foi           //foi       //foi           //foi
 
     @FXML
     public Label resultadoTexto, reviewTexto;
@@ -150,8 +149,8 @@ public class HelloController {
         }
 
         if (click.getSource() == botaoAc) {
-            calc.setNum1(0);
-            calc.setNum2(0);
+            calc.setNum1(0.0);
+            calc.setNum2(0.0);
             calc.setOperador(null);
             calc.setOperadorSelecionado(false);
             resultadoTexto.setText("");
@@ -172,10 +171,79 @@ public class HelloController {
                 calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
                 calc.setOperador('+');
                 calc.setOperadorSelecionado(true);
+                resultadoTexto.setText("");
             } else {
+                calc.setOperador('+');
             }
         }
-
+        if (click.getSource() == botaoSubtrair) {
+            if (!calc.isOperadorSelecionado()) {
+                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
+                calc.setOperador('-');
+                calc.setOperadorSelecionado(true);
+                resultadoTexto.setText("");
+            } else {
+                calc.setOperador('-');
+            }
+        }
+        if (click.getSource() == botaoDividir) {
+            if (!calc.isOperadorSelecionado()) {
+                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
+                calc.setOperador('/');
+                calc.setOperadorSelecionado(true);
+                resultadoTexto.setText("");
+            } else {
+                calc.setOperador('/');
+            }
+        }
+        if (click.getSource() == botaoMultiplicar) {
+            if (!calc.isOperadorSelecionado()) {
+                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
+                calc.setOperador('*');
+                calc.setOperadorSelecionado(true);
+                resultadoTexto.setText("");
+            } else {
+                calc.setOperador('*');
+            }
+        }
+        if (click.getSource() == botaoQuadrado) {
+            if (!calc.isOperadorSelecionado()) {
+                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
+                calc.setOperador('e');
+                calc.setOperadorSelecionado(true);
+                resultadoTexto.setText("");
+            } else {
+                calc.setOperador('e');
+            }
+        }
+        if (click.getSource() == botaoPorcent) {
+            if (!calc.isOperadorSelecionado()) {
+                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
+                calc.setOperador('p');
+                calc.setOperadorSelecionado(true);
+                resultadoTexto.setText("");
+            } else {
+                calc.setOperador('p');
+            }
+        }
+        if (click.getSource() == raizBotao) {
+            if (!calc.isOperadorSelecionado()) {
+                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
+                calc.setOperador('r');
+                calc.setOperadorSelecionado(true);
+                resultadoTexto.setText("");
+            } else {
+                calc.setOperador('r');
+            }
+        }
+        if (click.getSource() == botaoIgual) {
+            calc.setNum2(Double.parseDouble(resultadoTexto.getText()));
+            resultadoTexto.setText("");
+            calc.setResultado(calc.mostrarResultado(calc.getNum1(), calc.getOperador(), calc.getNum2()));
+            resultadoTexto.setText("" + calc.getResultado());
+            calc.setNum1(calc.getResultado());
+            calc.setOperador(null);
+        }
 
     }
 }

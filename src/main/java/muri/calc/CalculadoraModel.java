@@ -30,6 +30,7 @@ public class CalculadoraModel {
     private Character operador;
     private Double num2;
     private boolean operadorSelecionado = false;
+    private Double resultado;
 
 //    private ArrayList<String> calculos = new ArrayList<>();
 
@@ -51,7 +52,7 @@ public class CalculadoraModel {
         return num1;
     }
 
-    public void setNum1(double num1) {
+    public void setNum1(Double num1) {
         this.num1 = num1;
     }
 
@@ -67,7 +68,7 @@ public class CalculadoraModel {
         return num2;
     }
 
-    public void setNum2(double num2) {
+    public void setNum2(Double num2) {
         this.num2 = num2;
     }
 
@@ -77,6 +78,14 @@ public class CalculadoraModel {
 
     public void setOperadorSelecionado(boolean operadorSelecionado) {
         this.operadorSelecionado = operadorSelecionado;
+    }
+
+    public Double getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(Double resultado) {
+        this.resultado = resultado;
     }
 
     //agora os metodos usados pela calculadora
@@ -89,12 +98,12 @@ public class CalculadoraModel {
     }
 
     public double dividir(double num1, double num2) {
-        double divisao = num1 / num2;
         if (num2 == 0) {
-            divisao = 0;
+            return 0;
         }
-        return divisao;
+        return num1 / num2;
     }
+
 
     public double multiplicar(double num1, double num2) {
         return num1 * num2;
@@ -115,9 +124,9 @@ public class CalculadoraModel {
         return Math.pow(valor, 2);
     }
 
-    public double calcularPctAumentado(double valor, double percentual) {
-        return valor * (1 + percentual / 100);
-    }
+//    public double calcularPctAumentado(double valor, double percentual) {
+//        return valor * (1 + percentual / 100);
+//    }
 
     public double calcularPctDeUm(double valor, double percentual) {
         return valor * (percentual / 100);
@@ -132,6 +141,7 @@ public class CalculadoraModel {
             case '/' -> dividir(num1, num2);
             case 'e' -> elevarQuadrado(num1);
             case 'p' -> calcularPctDeUm(num1, num2);
+            case 'r' -> calcularRaiz(num1);
             //tá faltando o outro de porcentagem
             default -> throw new IllegalArgumentException("Operação desconhecida: " + operador);
         };
