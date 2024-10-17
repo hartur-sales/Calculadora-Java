@@ -66,8 +66,8 @@ public class HelloController {
 
     @FXML
     private void initialize() {
-        //resultadoTexto.setText("");
-        //reviewTexto.setText("");
+        resultadoTexto.setText("");
+        reviewTexto.setText("");
         //TODO
     }
 
@@ -99,7 +99,9 @@ public class HelloController {
 
     //qual botão foi clicado
     public void botaoClicado(ActionEvent click) {
-        //botoes numericos
+        String valor = ((Button) click.getSource()).getText();
+        resultadoTexto.setText(resultadoTexto.getText() + valor);
+        /*botoes numericos
         if (click.getSource() == botaoZero) {
             resultadoTexto.setText(resultadoTexto.getText() + "0");
         }
@@ -130,6 +132,7 @@ public class HelloController {
         if (click.getSource() == botaoNove) {
             resultadoTexto.setText(resultadoTexto.getText() + "9");
         }
+        */
 
         //botoes de gerenciamento
         if (click.getSource() == botaoDecimal) {

@@ -17,8 +17,6 @@
 
 package muri.calc;
 
-import java.util.ArrayList;
-
 /**
  * @author Murilo Nunes & Hartur Sales
  * @date 13/10/2024
@@ -26,11 +24,11 @@ import java.util.ArrayList;
  */
 
 public class CalculadoraModel {
-    private Double num1;
-    private Character operador;
-    private Double num2;
+    private double num1;
+    private char operador;
+    private double num2;
     private boolean operadorSelecionado = false;
-    private Double resultado;
+    private double resultado;
 
 //    private ArrayList<String> calculos = new ArrayList<>();
 
@@ -52,11 +50,11 @@ public class CalculadoraModel {
         return num1;
     }
 
-    public void setNum1(Double num1) {
+    public void setNum1(double num1) {
         this.num1 = num1;
     }
 
-    public Character getOperador() {
+    public char getOperador() {
         return operador;
     }
 
@@ -68,7 +66,7 @@ public class CalculadoraModel {
         return num2;
     }
 
-    public void setNum2(Double num2) {
+    public void setNum2(double num2) {
         this.num2 = num2;
     }
 
@@ -80,11 +78,11 @@ public class CalculadoraModel {
         this.operadorSelecionado = operadorSelecionado;
     }
 
-    public Double getResultado() {
+    public double getResultado() {
         return resultado;
     }
 
-    public void setResultado(Double resultado) {
+    public void setResultado(double resultado) {
         this.resultado = resultado;
     }
 
