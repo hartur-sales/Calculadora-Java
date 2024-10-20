@@ -101,38 +101,38 @@ public class HelloController {
     public void botaoClicado(ActionEvent click) {
         String valor = ((Button) click.getSource()).getText();
         resultadoTexto.setText(resultadoTexto.getText() + valor);
-        /*botoes numericos
-        if (click.getSource() == botaoZero) {
-            resultadoTexto.setText(resultadoTexto.getText() + "0");
-        }
-        if (click.getSource() == botaoUm) {
-            resultadoTexto.setText(resultadoTexto.getText() + "1");
-        }
-        if (click.getSource() == botaoDois) {
-            resultadoTexto.setText(resultadoTexto.getText() + "2");
-        }
-        if (click.getSource() == botaoTres) {
-            resultadoTexto.setText(resultadoTexto.getText() + "3");
-        }
-        if (click.getSource() == botaoQuatro) {
-            resultadoTexto.setText(resultadoTexto.getText() + "4");
-        }
-        if (click.getSource() == botaoCinco) {
-            resultadoTexto.setText(resultadoTexto.getText() + "5");
-        }
-        if (click.getSource() == botaoSeis) {
-            resultadoTexto.setText(resultadoTexto.getText() + "6");
-        }
-        if (click.getSource() == botaoSete) {
-            resultadoTexto.setText(resultadoTexto.getText() + "7");
-        }
-        if (click.getSource() == botaoOito) {
-            resultadoTexto.setText(resultadoTexto.getText() + "8");
-        }
-        if (click.getSource() == botaoNove) {
-            resultadoTexto.setText(resultadoTexto.getText() + "9");
-        }
-        */
+//        //botoes numericos
+//        if (click.getSource() == botaoZero) {
+//            resultadoTexto.setText(resultadoTexto.getText() + "0");
+//        }
+//        if (click.getSource() == botaoUm) {
+//            resultadoTexto.setText(resultadoTexto.getText() + "1");
+//        }
+//        if (click.getSource() == botaoDois) {
+//            resultadoTexto.setText(resultadoTexto.getText() + "2");
+//        }
+//        if (click.getSource() == botaoTres) {
+//            resultadoTexto.setText(resultadoTexto.getText() + "3");
+//        }
+//        if (click.getSource() == botaoQuatro) {
+//            resultadoTexto.setText(resultadoTexto.getText() + "4");
+//        }
+//        if (click.getSource() == botaoCinco) {
+//            resultadoTexto.setText(resultadoTexto.getText() + "5");
+//        }
+//        if (click.getSource() == botaoSeis) {
+//            resultadoTexto.setText(resultadoTexto.getText() + "6");
+//        }
+//        if (click.getSource() == botaoSete) {
+//            resultadoTexto.setText(resultadoTexto.getText() + "7");
+//        }
+//        if (click.getSource() == botaoOito) {
+//            resultadoTexto.setText(resultadoTexto.getText() + "8");
+//        }
+//        if (click.getSource() == botaoNove) {
+//            resultadoTexto.setText(resultadoTexto.getText() + "9");
+//        }
+
 
         //botoes de gerenciamento
         if (click.getSource() == botaoDecimal) {
@@ -154,7 +154,7 @@ public class HelloController {
         if (click.getSource() == botaoAc) {
             calc.setNum1(0.0);
             calc.setNum2(0.0);
-            calc.setOperador(null);
+            calc.setOperador('0');
             calc.setOperadorSelecionado(false);
             resultadoTexto.setText("");
         }
@@ -162,9 +162,8 @@ public class HelloController {
         if (click.getSource() == botaoApagar) {
             String numeroDigitado = resultadoTexto.getText();
             if (!numeroDigitado.isEmpty()) {
-                String novoTexto = numeroDigitado.substring(0, numeroDigitado.length() - 1);
                 //substring criando uma nova string só que nao tem o ultimo caracter
-                resultadoTexto.setText(novoTexto);
+                resultadoTexto.setText(numeroDigitado.substring(0, numeroDigitado.length() - 1));
             }
         }
 
@@ -245,7 +244,7 @@ public class HelloController {
             calc.setResultado(calc.mostrarResultado(calc.getNum1(), calc.getOperador(), calc.getNum2()));
             resultadoTexto.setText("" + calc.getResultado());
             calc.setNum1(calc.getResultado());
-            calc.setOperador(null);
+            calc.setOperador('0');
         }
 
     }

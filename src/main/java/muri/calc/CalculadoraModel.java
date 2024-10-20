@@ -58,7 +58,7 @@ public class CalculadoraModel {
         return operador;
     }
 
-    public void setOperador(Character operador) {
+    public void setOperador(char operador) {
         this.operador = operador;
     }
 
@@ -97,7 +97,7 @@ public class CalculadoraModel {
 
     public double dividir(double num1, double num2) {
         if (num2 == 0) {
-            return 0;
+            throw new IllegalArgumentException("Divisão por zero não é permitida.");
         }
         return num1 / num2;
     }
