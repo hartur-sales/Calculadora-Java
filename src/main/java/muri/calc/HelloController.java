@@ -132,14 +132,19 @@ public class HelloController {
 //        if (click.getSource() == botaoNove) {
 //            resultadoTexto.setText(resultadoTexto.getText() + "9");
 //        }
+    }
 
-
+    public void botaoGerenClicado(ActionEvent e) {
         //botoes de gerenciamento
-        if (click.getSource() == botaoDecimal) {
-            resultadoTexto.setText(resultadoTexto.getText() + ".");
+        if (e.getSource() == botaoDecimal) {
+            String textoAtual = resultadoTexto.getText();
+            if (!textoAtual.contains(".")) {
+                resultadoTexto.setText(textoAtual + ".");
+            }
         }
 
-        if (click.getSource() == botaoMudarSinal) {
+
+        if (e.getSource() == botaoMudarSinal) {
             if (calc.isOperadorSelecionado()) {
                 double numero2 = calc.getNum2() * (-1);
                 calc.setNum2(numero2);
@@ -151,7 +156,7 @@ public class HelloController {
             }
         }
 
-        if (click.getSource() == botaoAc) {
+        if (e.getSource() == botaoAc) {
             calc.setNum1(0.0);
             calc.setNum2(0.0);
             calc.setOperador('0');
@@ -159,16 +164,18 @@ public class HelloController {
             resultadoTexto.setText("");
         }
 
-        if (click.getSource() == botaoApagar) {
+        if (e.getSource() == botaoApagar) {
             String numeroDigitado = resultadoTexto.getText();
             if (!numeroDigitado.isEmpty()) {
                 //substring criando uma nova string só que nao tem o ultimo caracter
                 resultadoTexto.setText(numeroDigitado.substring(0, numeroDigitado.length() - 1));
             }
         }
+    }
 
+    public void botaoOperacaoClicado(ActionEvent actionEvent) {
         //botoes de operaçao
-        if (click.getSource() == botaoSomar) {
+        if (actionEvent.getSource() == botaoSomar) {
             if (!calc.isOperadorSelecionado()) {
                 calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
                 calc.setOperador('+');
@@ -178,7 +185,7 @@ public class HelloController {
                 calc.setOperador('+');
             }
         }
-        if (click.getSource() == botaoSubtrair) {
+        if (actionEvent.getSource() == botaoSubtrair) {
             if (!calc.isOperadorSelecionado()) {
                 calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
                 calc.setOperador('-');
@@ -188,7 +195,7 @@ public class HelloController {
                 calc.setOperador('-');
             }
         }
-        if (click.getSource() == botaoDividir) {
+        if (actionEvent.getSource() == botaoDividir) {
             if (!calc.isOperadorSelecionado()) {
                 calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
                 calc.setOperador('/');
@@ -198,7 +205,7 @@ public class HelloController {
                 calc.setOperador('/');
             }
         }
-        if (click.getSource() == botaoMultiplicar) {
+        if (actionEvent.getSource() == botaoMultiplicar) {
             if (!calc.isOperadorSelecionado()) {
                 calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
                 calc.setOperador('*');
@@ -208,7 +215,7 @@ public class HelloController {
                 calc.setOperador('*');
             }
         }
-        if (click.getSource() == botaoQuadrado) {
+        if (actionEvent.getSource() == botaoQuadrado) {
             if (!calc.isOperadorSelecionado()) {
                 calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
                 calc.setOperador('e');
@@ -218,7 +225,7 @@ public class HelloController {
                 calc.setOperador('e');
             }
         }
-        if (click.getSource() == botaoPorcent) {
+        if (actionEvent.getSource() == botaoPorcent) {
             if (!calc.isOperadorSelecionado()) {
                 calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
                 calc.setOperador('p');
@@ -228,7 +235,7 @@ public class HelloController {
                 calc.setOperador('p');
             }
         }
-        if (click.getSource() == raizBotao) {
+        if (actionEvent.getSource() == raizBotao) {
             if (!calc.isOperadorSelecionado()) {
                 calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
                 calc.setOperador('r');
@@ -238,7 +245,7 @@ public class HelloController {
                 calc.setOperador('r');
             }
         }
-        if (click.getSource() == botaoIgual) {
+        if (actionEvent.getSource() == botaoIgual) {
             calc.setNum2(Double.parseDouble(resultadoTexto.getText()));
             resultadoTexto.setText("");
             calc.setResultado(calc.mostrarResultado(calc.getNum1(), calc.getOperador(), calc.getNum2()));
@@ -246,9 +253,6 @@ public class HelloController {
             calc.setNum1(calc.getResultado());
             calc.setOperador('0');
         }
-
     }
+
 }
-
-
-

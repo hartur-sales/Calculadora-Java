@@ -17,6 +17,8 @@
 
 package muri.calc;
 
+import java.util.ArrayList;
+
 /**
  * @author Murilo Nunes & Hartur Sales
  * @date 13/10/2024
@@ -30,21 +32,21 @@ public class CalculadoraModel {
     private boolean operadorSelecionado = false;
     private double resultado;
 
-//    private ArrayList<String> calculos = new ArrayList<>();
+    private ArrayList<String> calculos = new ArrayList<>();
 
     //getters setters add remove
 
-//    public ArrayList<String> getCalculos() {
-//        return calculos;
-//    }
-//
-//    public void addCalculo(String calculadoraModel) {
-//        calculos.add(calculadoraModel);
-//    }
-//
-//    public void removeCalculo(String calculadoraModel) {
-//        calculos.remove(calculadoraModel);
-//    }
+    public ArrayList<String> getCalculos() {
+        return calculos;
+    }
+
+    public void addCalculo(String calculadoraModel) {
+        calculos.add(calculadoraModel);
+    }
+
+    public void removeCalculo(String calculadoraModel) {
+        calculos.remove(calculadoraModel);
+    }
 
     public double getNum1() {
         return num1;
@@ -70,6 +72,9 @@ public class CalculadoraModel {
         this.num2 = num2;
     }
 
+
+    //parte do operador
+
     public boolean isOperadorSelecionado() {
         return operadorSelecionado;
     }
@@ -77,6 +82,18 @@ public class CalculadoraModel {
     public void setOperadorSelecionado(boolean operadorSelecionado) {
         this.operadorSelecionado = operadorSelecionado;
     }
+
+
+//sugestao do gepeto
+//    public void selecionarOperador(char operador) {
+//        if (!operadorSelecionado) {
+//            this.num1 = Double.parseDouble(resultadoTexto.getText());
+//            this.operador = operador;
+//            this.operadorSelecionado = true;
+//        } else {
+//            this.operador = operador;
+//        }
+//    }
 
     public double getResultado() {
         return resultado;
