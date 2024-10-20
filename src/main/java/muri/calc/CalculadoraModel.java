@@ -28,8 +28,8 @@ import java.util.ArrayList;
 public class CalculadoraModel {
     private double num1;
     private char operador;
-    private double num2;
     private boolean operadorSelecionado = false;
+    private double num2;
     private double resultado;
 
     private ArrayList<String> calculos = new ArrayList<>();
