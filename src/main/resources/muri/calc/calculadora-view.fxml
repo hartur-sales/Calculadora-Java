@@ -37,6 +37,7 @@
          </padding></Label>
     </VBox>
     <GridPane hgap="20.0" vgap="14.0" VBox.vgrow="ALWAYS">
+        <!-- Botoes de operaçao -->
         <Button fx:id="botaoQuadrado" maxHeight="Infinity" maxWidth="Infinity"  mnemonicParsing="false" onAction="#botaoOperacaoClicado" styleClass="button-operacao" text="n²" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="botaoPorcent" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" onAction="#botaoOperacaoClicado" styleClass="button-operacao" text="\%" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="raizBotao" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" onAction="#botaoOperacaoClicado" styleClass="button-operacao" text="√" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
@@ -44,7 +45,9 @@
         <Button fx:id="botaoMultiplicar" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoOperacaoClicado" styleClass="button-operacao" text="x" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="botaoSubtrair" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoOperacaoClicado" styleClass="button-operacao" text="-" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="botaoSomar" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoOperacaoClicado" styleClass="button-operacao" text="+" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoIgual" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoIgualClicado" styleClass="button-igual" text="=" GridPane.columnIndex="3" GridPane.rowIndex="5" />
 
+        <!-- Botoes numericos -->
         <Button fx:id="botaoZero" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoClicado" styleClass="button-number" text="0" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="botaoUm" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoClicado" styleClass="button-number" text="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="botaoDois" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoClicado" styleClass="button-number" text="2" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
@@ -56,17 +59,16 @@
         <Button fx:id="botaoOito" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoClicado" styleClass="button-number" text="8" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="botaoNove" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoClicado" styleClass="button-number" text="9" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
 
+        <!-- Botoes de gerenciamento -->
         <Button fx:id="botaoDecimal" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoGerenClicado" styleClass="button-number" text="." GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="botaoMudarSinal" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoGerenClicado" styleClass="button-number-maismenos" text="+/-" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="botaoAc" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoGerenClicado" styleClass="button-deletes" text="Ac" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="botaoApagar" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoGerenClicado" styleClass="button-deletes" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
-
-        <Button fx:id="botaoIgual" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoIgualClicado" styleClass="button-igual" text="=" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-         <graphic>
-             <ImageView fx:id="deleteImagem" fitHeight="31.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-                 <Image url="@../../images/backspace.png" />
-             </ImageView>
-         </graphic>
+            <graphic>
+                <ImageView fx:id="deleteImagem" fitHeight="31.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../../images/backspace.png" />
+                </ImageView>
+            </graphic>
         </Button>
         <columnConstraints>
             <ColumnConstraints percentWidth="25.0" />
