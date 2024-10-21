@@ -223,13 +223,17 @@ public class HelloController {
     }
 
     public void botaoIgualClicado(ActionEvent act) {
-        if (!resultadoTexto.getText().isEmpty()) {
-            double num2 = Double.parseDouble(resultadoTexto.getText());
-            calc.setNum2(num2);
-            calc.setResultado(calc.mostrarResultado(calc.getNum1(), calc.getOperador(), calc.getNum2()));
-            resultadoTexto.setText(String.valueOf(calc.getResultado()));
-            calc.setNum1(calc.getResultado());
-            calc.setOperadorSelecionado(false);
+        try {
+            if (!resultadoTexto.getText().isEmpty()) {
+                double num2 = Double.parseDouble(resultadoTexto.getText());
+                calc.setNum2(num2);
+                calc.setResultado(calc.mostrarResultado(calc.getNum1(), calc.getOperador(), calc.getNum2()));
+                resultadoTexto.setText(String.valueOf(calc.getResultado()));
+                calc.setNum1(calc.getResultado());
+                calc.setOperadorSelecionado(false);
+            }
+        } catch (ArithmeticException e) {
+            resultadoTexto.setText(e.getMessage());
         }
     }
 

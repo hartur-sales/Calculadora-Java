@@ -114,7 +114,7 @@ public class CalculadoraModel {
 
     public double dividir(double num1, double num2) {
         if (num2 == 0) {
-            throw new IllegalArgumentException("Divisão por zero não é permitida.");
+            throw new ArithmeticException("Divisão por zero não é permitida.");
         }
         return num1 / num2;
     }
@@ -135,8 +135,8 @@ public class CalculadoraModel {
 //    }
 
     //ao quadrado
-    public double elevarQuadrado(double valor) {
-        return Math.pow(valor, 2);
+    public double calcularPotencia(double valor1, double valor2) {
+        return Math.pow(valor1, valor2);
     }
 
 //    public double calcularPctAumentado(double valor, double percentual) {
@@ -154,7 +154,7 @@ public class CalculadoraModel {
             case '-' -> subtrair(num1, num2);
             case '*' -> multiplicar(num1, num2);
             case '/' -> dividir(num1, num2);
-            case 'e' -> elevarQuadrado(num1);
+            case 'e' -> calcularPotencia(num1, num2);
             case 'p' -> calcularPctDeUm(num1, num2);
             case 'r' -> calcularRaiz(num1);
             //tá faltando o outro de porcentagem
