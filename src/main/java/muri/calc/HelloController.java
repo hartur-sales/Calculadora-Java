@@ -44,7 +44,7 @@ public class HelloController {
 
     //botoes de numeros
     @FXML
-    public Button botaoNove, botaoOito, botaoSete, botaoSeis, botaoCinco, botaoQuatro, botaoTres, botaoDois, botaoUm, botaoZero;
+    public Button botaoUm, botaoDois, botaoTres, botaoQuatro, botaoCinco, botaoSeis, botaoSete, botaoOito, botaoNove, botaoZero;
 
     //botoes de gerenciamento
     @FXML
@@ -98,87 +98,21 @@ public class HelloController {
     }
 
     //qual botão foi clicado
-    public void botaoClicado(ActionEvent click) {
+    public void numeroClicado(ActionEvent click) {
         String valor = ((Button) click.getSource()).getText();
         resultadoTexto.setText(resultadoTexto.getText() + valor);
-//        //botoes numericos
-//        if (click.getSource() == botaoZero) {
-//            resultadoTexto.setText(resultadoTexto.getText() + "0");
-//        }
-//        if (click.getSource() == botaoUm) {
-//            resultadoTexto.setText(resultadoTexto.getText() + "1");
-//        }
-//        if (click.getSource() == botaoDois) {
-//            resultadoTexto.setText(resultadoTexto.getText() + "2");
-//        }
-//        if (click.getSource() == botaoTres) {
-//            resultadoTexto.setText(resultadoTexto.getText() + "3");
-//        }
-//        if (click.getSource() == botaoQuatro) {
-//            resultadoTexto.setText(resultadoTexto.getText() + "4");
-//        }
-//        if (click.getSource() == botaoCinco) {
-//            resultadoTexto.setText(resultadoTexto.getText() + "5");
-//        }
-//        if (click.getSource() == botaoSeis) {
-//            resultadoTexto.setText(resultadoTexto.getText() + "6");
-//        }
-//        if (click.getSource() == botaoSete) {
-//            resultadoTexto.setText(resultadoTexto.getText() + "7");
-//        }
-//        if (click.getSource() == botaoOito) {
-//            resultadoTexto.setText(resultadoTexto.getText() + "8");
-//        }
-//        if (click.getSource() == botaoNove) {
-//            resultadoTexto.setText(resultadoTexto.getText() + "9");
-//        }
     }
-
-//    public void botaoGerenClicado(ActionEvent e) {
-//        //botoes de gerenciamento
-//        if (e.getSource() == botaoDecimal) {
-//            String textoAtual = resultadoTexto.getText();
-//            if (!textoAtual.contains(".")) {
-//                resultadoTexto.setText(textoAtual + ".");
-//            }
-//        }
-//
-//
-//        if (e.getSource() == botaoMudarSinal) {
-//            if (calc.isOperadorSelecionado()) {
-//                double numero2 = calc.getNum2() * (-1);
-//                calc.setNum2(numero2);
-//                resultadoTexto.setText(String.valueOf(numero2));
-//            } else {
-//                double numero1 = calc.getNum1() * (-1);
-//                calc.setNum1(numero1);
-//                resultadoTexto.setText(String.valueOf(numero1));
-//            }
-//        }
-//
-//        if (e.getSource() == botaoAc) {
-//            calc.setNum1(0.0);
-//            calc.setNum2(0.0);
-//            calc.setOperador('0');
-//            calc.setOperadorSelecionado(false);
-//            resultadoTexto.setText("");
-//            calc.setResultado(0.0);
-//        }
-//
-//        if (e.getSource() == botaoApagar) {
-//            String numeroDigitado = resultadoTexto.getText();
-//            if (!numeroDigitado.isEmpty()) {
-//                //substring criando uma nova string só que nao tem o ultimo caracter
-//                resultadoTexto.setText(numeroDigitado.substring(0, numeroDigitado.length() - 1));
-//            }
-//        }
-//    }
 
     public void botaoGerenClicado(ActionEvent e) {
         String textoAtual = resultadoTexto.getText();
 
-        if (e.getSource() == botaoDecimal && !textoAtual.contains(".")) {
-            resultadoTexto.setText(textoAtual + ".");
+        if (e.getSource() == botaoDecimal) {
+            if (!textoAtual.contains(".")) {
+                resultadoTexto.setText(textoAtual + ".");
+            }
+            if (textoAtual.isEmpty()) {
+                resultadoTexto.setText("0.");
+            }
         } else if (e.getSource() == botaoMudarSinal) {
             double numero = Double.parseDouble(textoAtual) * -1;
             resultadoTexto.setText(String.valueOf(numero));
@@ -218,6 +152,7 @@ public class HelloController {
                 calc.setOperador('p');
             } else if (actionEvent.getSource() == raizBotao) {
                 calc.setOperador('r');
+                botaoIgualClicado(actionEvent);
             }
         }
     }
@@ -236,80 +171,4 @@ public class HelloController {
             resultadoTexto.setText(e.getMessage());
         }
     }
-
-
-//    public void botaoOperacaoClicado(ActionEvent actionEvent) {
-//        //botoes de operaçao
-//        if (actionEvent.getSource() == botaoSomar) {
-//            if (!calc.isOperadorSelecionado()) {
-//                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
-//                calc.setOperador('+');
-//                calc.setOperadorSelecionado(true);
-//                resultadoTexto.setText("");
-//            } else {
-//                calc.setOperador('+');
-//            }
-//        }
-//        if (actionEvent.getSource() == botaoSubtrair) {
-//            if (!calc.isOperadorSelecionado()) {
-//                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
-//                calc.setOperador('-');
-//                calc.setOperadorSelecionado(true);
-//                resultadoTexto.setText("");
-//            } else {
-//                calc.setOperador('-');
-//            }
-//        }
-//        if (actionEvent.getSource() == botaoDividir) {
-//            if (!calc.isOperadorSelecionado()) {
-//                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
-//                calc.setOperador('/');
-//                calc.setOperadorSelecionado(true);
-//                resultadoTexto.setText("");
-//            } else {
-//                calc.setOperador('/');
-//            }
-//        }
-//        if (actionEvent.getSource() == botaoMultiplicar) {
-//            if (!calc.isOperadorSelecionado()) {
-//                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
-//                calc.setOperador('*');
-//                calc.setOperadorSelecionado(true);
-//                resultadoTexto.setText("");
-//            } else {
-//                calc.setOperador('*');
-//            }
-//        }
-//        if (actionEvent.getSource() == botaoQuadrado) {
-//            if (!calc.isOperadorSelecionado()) {
-//                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
-//                calc.setOperador('e');
-//                calc.setOperadorSelecionado(true);
-//                resultadoTexto.setText("");
-//            } else {
-//                calc.setOperador('e');
-//            }
-//        }
-//        if (actionEvent.getSource() == botaoPorcent) {
-//            if (!calc.isOperadorSelecionado()) {
-//                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
-//                calc.setOperador('p');
-//                calc.setOperadorSelecionado(true);
-//                resultadoTexto.setText("");
-//            } else {
-//                calc.setOperador('p');
-//            }
-//        }
-//        if (actionEvent.getSource() == raizBotao) {
-//            if (!calc.isOperadorSelecionado()) {
-//                calc.setNum1(Double.parseDouble(resultadoTexto.getText()));
-//                calc.setOperador('r');
-//                calc.setOperadorSelecionado(true);
-//                resultadoTexto.setText("");
-//            } else {
-//                calc.setOperador('r');
-//            }
-//        }
-//
-//    }
 }

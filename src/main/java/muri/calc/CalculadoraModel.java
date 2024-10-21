@@ -72,9 +72,7 @@ public class CalculadoraModel {
         this.num2 = num2;
     }
 
-
     //parte do operador
-
     public boolean isOperadorSelecionado() {
         return operadorSelecionado;
     }
@@ -82,18 +80,6 @@ public class CalculadoraModel {
     public void setOperadorSelecionado(boolean operadorSelecionado) {
         this.operadorSelecionado = operadorSelecionado;
     }
-
-
-//sugestao do gepeto
-//    public void selecionarOperador(char operador) {
-//        if (!operadorSelecionado) {
-//            this.num1 = Double.parseDouble(resultadoTexto.getText());
-//            this.operador = operador;
-//            this.operadorSelecionado = true;
-//        } else {
-//            this.operador = operador;
-//        }
-//    }
 
     public double getResultado() {
         return resultado;
@@ -119,7 +105,6 @@ public class CalculadoraModel {
         return num1 / num2;
     }
 
-
     public double multiplicar(double num1, double num2) {
         return num1 * num2;
     }
@@ -128,20 +113,10 @@ public class CalculadoraModel {
         return Math.sqrt(valor);
     }
 
-
-    //entre dois valores
-//    public double elevarPotencia(double base, double expoente) {
-//        return Math.pow(base, expoente);
-//    }
-
     //ao quadrado
     public double calcularPotencia(double valor1, double valor2) {
         return Math.pow(valor1, valor2);
     }
-
-//    public double calcularPctAumentado(double valor, double percentual) {
-//        return valor * (1 + percentual / 100);
-//    }
 
     public double calcularPctDeUm(double valor, double percentual) {
         return valor * (percentual / 100);
