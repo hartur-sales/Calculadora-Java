@@ -222,7 +222,7 @@ public class HelloController {
         }
     }
 
-    public void calcularResultado() {
+    public void botaoIgualClicado(ActionEvent actionEvent) {
         if (!resultadoTexto.getText().isEmpty()) {
             double num2 = Double.parseDouble(resultadoTexto.getText());
             calc.setNum2(num2);
@@ -231,10 +231,6 @@ public class HelloController {
             calc.setNum1(calc.getResultado());
             calc.setOperadorSelecionado(false);
         }
-    }
-
-    public void botaoIgualClicado(ActionEvent actionEvent) {
-        calcularResultado();
     }
 
 
@@ -312,7 +308,4 @@ public class HelloController {
 //        }
 //
 //    }
-
-
-
 }

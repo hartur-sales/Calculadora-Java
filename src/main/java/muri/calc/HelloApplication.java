@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
- *
  * @author Murilo Nunes & Hartur Sales
  * @date 08/10/2024
  * @brief Class HelloApplication
