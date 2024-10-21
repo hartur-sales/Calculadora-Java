@@ -222,7 +222,7 @@ public class HelloController {
         }
     }
 
-    public void botaoIgualClicado(ActionEvent actionEvent) {
+    public void botaoIgualClicado(ActionEvent act) {
         if (!resultadoTexto.getText().isEmpty()) {
             double num2 = Double.parseDouble(resultadoTexto.getText());
             calc.setNum2(num2);
