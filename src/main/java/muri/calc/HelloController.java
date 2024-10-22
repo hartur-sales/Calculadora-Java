@@ -27,6 +27,10 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -38,6 +42,7 @@ import java.util.Objects;
 public class HelloController {
     private Scene scene;
     private Stage stage;
+    NumberFormat format = NumberFormat.getInstance(Locale.forLanguageTag("pt-BR"));
 
     CalculadoraModel calc = new CalculadoraModel();
 
@@ -85,28 +90,22 @@ public class HelloController {
 
     public void mudarTema(ActionEvent actionEvent) {
         if (temaAtual) {
-            //tema claro
-            aplicarTemaClaro();
+            aplicarTema(temaClaro, "/images/dark-mode.png", "/images/backspace-dark.png");
         } else {
-            //tema escuro
-            aplicarTemaEscuro();
+            aplicarTema(temaEscuro, "/images/light-mode.png", "/images/backspace.png");
         }
-        //muda a variavel do tema
         temaAtual = !temaAtual;
     }
 
-    public void aplicarTemaClaro() {
-        imagemTema.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/dark-mode.png"))));
-        scene.getStylesheets().remove(temaEscuro);
-        scene.getStylesheets().add(temaClaro);
-        deleteImagem.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/backspace-dark.png"))));
+    private void aplicarTema(String tema, String temaImgPath, String deleteImgPath) {
+        atualizarImagens(temaImgPath, deleteImgPath);
+        scene.getStylesheets().remove(temaAtual ? temaEscuro : temaClaro);
+        scene.getStylesheets().add(tema);
     }
 
-    public void aplicarTemaEscuro() {
-        imagemTema.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/light-mode.png"))));
-        scene.getStylesheets().remove(temaClaro);
-        scene.getStylesheets().add(temaEscuro);
-        deleteImagem.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/backspace.png"))));
+    private void atualizarImagens(String temaImg, String deleteImg) {
+        imagemTema.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(temaImg))));
+        deleteImagem.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(deleteImg))));
     }
 
     //qual botão foi clicado
@@ -119,15 +118,15 @@ public class HelloController {
         String textoAtual = resultadoTexto.getText();
 
         if (e.getSource() == botaoDecimal) {
-            if (!textoAtual.contains(".")) {
-                resultadoTexto.setText(textoAtual + ".");
+            if (!textoAtual.contains(",")) {
+                resultadoTexto.setText(textoAtual + ",");
             }
             if (textoAtual.isEmpty()) {
                 resultadoTexto.setText("0.");
             }
         } else if (e.getSource() == botaoMudarSinal) {
             double numero = Double.parseDouble(textoAtual) * -1;
-            resultadoTexto.setText(String.valueOf(numero));
+            resultadoTexto.setText(formatarResultado(numero));
         } else if (e.getSource() == botaoAc) {
             // Zerar todos os valores do modelo
             calc.setNum1(0.0);
@@ -142,10 +141,9 @@ public class HelloController {
         }
     }
 
-
-    public void botaoOperacaoClicado(ActionEvent actionEvent) {
+    public void botaoOperacaoClicado(ActionEvent actionEvent) throws ParseException {
         if (!resultadoTexto.getText().isEmpty()) {
-            double numero = Double.parseDouble(resultadoTexto.getText());
+            double numero = format.parse(resultadoTexto.getText()).doubleValue();
             calc.setNum1(numero);
             resultadoTexto.setText("");
 
@@ -164,48 +162,44 @@ public class HelloController {
             } else if (actionEvent.getSource() == raizBotao) {
                 calc.setOperador('r');
                 calc.setResultado(calc.calcularRaiz(numero));
-                reviewTexto.setText("√" + calc.getNum1());
-                if (calc.getResultado() % 1 != 0) {
-                    resultadoTexto.setText(String.valueOf(calc.getResultado()));
-                } else {
-                    resultadoTexto.setText(String.valueOf((int) calc.getResultado()));
-                }
+                reviewTexto.setText("√" + formatarResultado(calc.getNum1()));
+                resultadoTexto.setText(formatarResultado(calc.getResultado()));
                 calc.setNum1(calc.getResultado());
                 calc.addCalculo(reviewTexto.getText() + " = " + resultadoTexto.getText());
                 return;
             }
-            reviewTexto.setText(calc.getNum1() + " " + calc.getOperador());
+            reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador());
         }
     }
 
     public void botaoIgualClicado(ActionEvent act) {
         try {
             if (!resultadoTexto.getText().isEmpty()) {
-                double num2 = Double.parseDouble(resultadoTexto.getText());
+                double num2 = format.parse(resultadoTexto.getText()).doubleValue();
                 if (calc.getOperador() != '\0') {
                     calc.setNum2(num2);
-                    reviewTexto.setText(calc.getNum1() + " " + calc.getOperador() + " " + calc.getNum2() + " =");
+                    reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador() + " "
+                            + formatarResultado(calc.getNum2()) + " =");
                     calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
-                    if (calc.getResultado() % 1 != 0) {
-                        resultadoTexto.setText(String.valueOf(calc.getResultado()));
-                    } else {
-                        resultadoTexto.setText(String.valueOf((int) calc.getResultado()));
-                    }
+                    resultadoTexto.setText(formatarResultado(calc.getResultado()));
                     calc.setNum1(calc.getResultado());
                     calc.setOperadorSelecionado(false);
                     calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
                 } else {
-                    reviewTexto.setText(num2 + " =");
-                    if (num2 % 1 != 0) {
-                        resultadoTexto.setText(String.valueOf(num2));
-                    } else {
-                        resultadoTexto.setText(String.valueOf((int) num2));
-                    }
+                    reviewTexto.setText(formatarResultado(num2) + " =");
+                    resultadoTexto.setText(formatarResultado(num2));
                     calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
                 }
             }
         } catch (ArithmeticException e) {
             resultadoTexto.setText(e.getMessage());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
+    }
+
+    private String formatarResultado(double valor) {
+        DecimalFormat df = new DecimalFormat("#.#####");
+        return (valor % 1 != 0) ? df.format(valor) : String.valueOf((int) valor);
     }
 }

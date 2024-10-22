@@ -146,7 +146,6 @@ public class CalculadoraModel {
         return Math.sqrt(valor);
     }
 
-    //ao quadrado
     public double calcularPotencia(double valor1, double valor2) {
         return Math.pow(valor1, valor2);
     }
@@ -169,5 +168,4 @@ public class CalculadoraModel {
             default -> throw new IllegalArgumentException("Operação desconhecida: " + operador);
         };
     }
-
 }
