@@ -155,7 +155,7 @@ public class CalculadoraModel {
         return valor * (percentual / 100);
     }
 
-    public double mostrarResultado(double num1, char operador, double num2) {
+    public double definirOperacao(double num1, char operador, double num2) {
         //era um switch que ao inves de break, tinha return, isso é só uma recomendaçao da IDE
         return switch (operador) {
             case '+' -> somar(num1, num2);

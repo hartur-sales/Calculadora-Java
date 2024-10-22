@@ -43,21 +43,21 @@ public class HelloController {
 
     //botoes de operaçao
     @FXML
-    public Button botaoDividir, botaoMultiplicar, botaoSubtrair, botaoSomar, botaoIgual, botaoQuadrado, botaoPorcent, raizBotao;
+    private Button botaoDividir, botaoMultiplicar, botaoSubtrair, botaoSomar, botaoIgual, botaoQuadrado, botaoPorcent, raizBotao;
 
     //botoes de numeros
     @FXML
-    public Button botaoUm, botaoDois, botaoTres, botaoQuatro, botaoCinco, botaoSeis, botaoSete, botaoOito, botaoNove, botaoZero;
+    private Button botaoUm, botaoDois, botaoTres, botaoQuatro, botaoCinco, botaoSeis, botaoSete, botaoOito, botaoNove, botaoZero;
 
     //botoes de gerenciamento
     @FXML
-    public Button botaoMudarSinal, botaoAc, botaoDecimal, botaoApagar, botaoTema;
+    private Button botaoMudarSinal, botaoAc, botaoDecimal, botaoApagar, botaoTema;
 
     @FXML
-    public Label resultadoTexto, reviewTexto;
+    private Label resultadoTexto, reviewTexto;
 
     @FXML
-    public ImageView imagemTema, deleteImagem;
+    private ImageView imagemTema, deleteImagem;
 
     private final String temaEscuro = Objects.requireNonNull(getClass().getResource("/styles/calculadora.css")).toExternalForm();
     private final String temaClaro = Objects.requireNonNull(getClass().getResource("/styles/calculadora-branca.css")).toExternalForm();
@@ -165,7 +165,11 @@ public class HelloController {
                 calc.setOperador('r');
                 calc.setResultado(calc.calcularRaiz(numero));
                 reviewTexto.setText("√" + calc.getNum1());
-                resultadoTexto.setText(String.valueOf(calc.getResultado()));
+                if (calc.getResultado() % 1 != 0) {
+                    resultadoTexto.setText(String.valueOf(calc.getResultado()));
+                } else {
+                    resultadoTexto.setText(String.valueOf((int) calc.getResultado()));
+                }
                 calc.setNum1(calc.getResultado());
                 calc.addCalculo(reviewTexto.getText() + " = " + resultadoTexto.getText());
                 return;
@@ -181,14 +185,22 @@ public class HelloController {
                 if (calc.getOperador() != '\0') {
                     calc.setNum2(num2);
                     reviewTexto.setText(calc.getNum1() + " " + calc.getOperador() + " " + calc.getNum2() + " =");
-                    calc.setResultado(calc.mostrarResultado(calc.getNum1(), calc.getOperador(), calc.getNum2()));
-                    resultadoTexto.setText(String.valueOf(calc.getResultado()));
+                    calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
+                    if (calc.getResultado() % 1 != 0) {
+                        resultadoTexto.setText(String.valueOf(calc.getResultado()));
+                    } else {
+                        resultadoTexto.setText(String.valueOf((int) calc.getResultado()));
+                    }
                     calc.setNum1(calc.getResultado());
                     calc.setOperadorSelecionado(false);
                     calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
                 } else {
                     reviewTexto.setText(num2 + " =");
-                    resultadoTexto.setText(String.valueOf(num2));
+                    if (num2 % 1 != 0) {
+                        resultadoTexto.setText(String.valueOf(num2));
+                    } else {
+                        resultadoTexto.setText(String.valueOf((int) num2));
+                    }
                     calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
                 }
             }
