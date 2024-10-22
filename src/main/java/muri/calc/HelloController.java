@@ -60,6 +60,7 @@ public class HelloController {
     private final String temaClaro = Objects.requireNonNull(getClass().getResource("/styles/calculadora-branca.css")).toExternalForm();
     private boolean temaAtual = true; //true para escuro, false para claro
 
+
     public void setScene(Scene scene) {
         this.scene = scene;
     }
@@ -123,9 +124,8 @@ public class HelloController {
             calc.setResultado(0.0);
             calc.setOperador('\0'); // Define o operador como vazio
             calc.setOperadorSelecionado(false);
-
-            // Limpar a tela
             resultadoTexto.setText("");
+            reviewTexto.setText("");
         } else if (e.getSource() == botaoApagar && !textoAtual.isEmpty()) {
             resultadoTexto.setText(textoAtual.substring(0, textoAtual.length() - 1));
         }
@@ -143,17 +143,22 @@ public class HelloController {
             } else if (actionEvent.getSource() == botaoSubtrair) {
                 calc.setOperador('-');
             } else if (actionEvent.getSource() == botaoMultiplicar) {
-                calc.setOperador('*');
+                calc.setOperador('x');
             } else if (actionEvent.getSource() == botaoDividir) {
                 calc.setOperador('/');
             } else if (actionEvent.getSource() == botaoQuadrado) {
-                calc.setOperador('e');
+                calc.setOperador('^');
             } else if (actionEvent.getSource() == botaoPorcent) {
                 calc.setOperador('p');
             } else if (actionEvent.getSource() == raizBotao) {
                 calc.setOperador('r');
-                botaoIgualClicado(actionEvent);
+                calc.setResultado(calc.calcularRaiz(numero));
+                reviewTexto.setText("√" + calc.getNum1());
+                resultadoTexto.setText(String.valueOf(calc.getResultado()));
+                calc.setNum1(calc.getResultado());
+                return;
             }
+            reviewTexto.setText(calc.getNum1() + " " + calc.getOperador());
         }
     }
 
@@ -161,11 +166,17 @@ public class HelloController {
         try {
             if (!resultadoTexto.getText().isEmpty()) {
                 double num2 = Double.parseDouble(resultadoTexto.getText());
-                calc.setNum2(num2);
-                calc.setResultado(calc.mostrarResultado(calc.getNum1(), calc.getOperador(), calc.getNum2()));
-                resultadoTexto.setText(String.valueOf(calc.getResultado()));
-                calc.setNum1(calc.getResultado());
-                calc.setOperadorSelecionado(false);
+                if (calc.getOperador() != '\0') {
+                    calc.setNum2(num2);
+                    reviewTexto.setText(calc.getNum1() + " " + calc.getOperador() + " " + calc.getNum2() + " =");
+                    calc.setResultado(calc.mostrarResultado(calc.getNum1(), calc.getOperador(), calc.getNum2()));
+                    resultadoTexto.setText(String.valueOf(calc.getResultado()));
+                    calc.setNum1(calc.getResultado());
+                    calc.setOperadorSelecionado(false);
+                } else {
+                    reviewTexto.setText(num2 + " =");
+                    resultadoTexto.setText(String.valueOf(num2));
+                }
             }
         } catch (ArithmeticException e) {
             resultadoTexto.setText(e.getMessage());
