@@ -53,7 +53,9 @@ public class HelloApplication extends Application {
         stage.getIcons().add(new Image(Objects.requireNonNull(HelloApplication.class.getResourceAsStream("/images/icon.png"))));
         stage.setTitle("Calculadora");
         stage.setScene(scene);
+        controller.setStage(stage);
         stage.show();
+        controller.calc.deletarArquivo();
     }
 
     public static void main(String[] args) {

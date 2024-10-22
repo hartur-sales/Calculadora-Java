@@ -24,6 +24,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.util.Objects;
 
@@ -35,6 +37,7 @@ import java.util.Objects;
 
 public class HelloController {
     private Scene scene;
+    private Stage stage;
 
     CalculadoraModel calc = new CalculadoraModel();
 
@@ -65,11 +68,19 @@ public class HelloController {
         this.scene = scene;
     }
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+        this.stage.setOnCloseRequest(this::fecharApp);
+    }
+
+    private void fecharApp(WindowEvent event) {
+        calc.criarArquivo();
+    }
+
     @FXML
     private void initialize() {
         resultadoTexto.setText("");
         reviewTexto.setText("");
-        //TODO
     }
 
     public void mudarTema(ActionEvent actionEvent) {
@@ -156,6 +167,7 @@ public class HelloController {
                 reviewTexto.setText("√" + calc.getNum1());
                 resultadoTexto.setText(String.valueOf(calc.getResultado()));
                 calc.setNum1(calc.getResultado());
+                calc.addCalculo(reviewTexto.getText() + " = " + resultadoTexto.getText());
                 return;
             }
             reviewTexto.setText(calc.getNum1() + " " + calc.getOperador());
@@ -173,9 +185,11 @@ public class HelloController {
                     resultadoTexto.setText(String.valueOf(calc.getResultado()));
                     calc.setNum1(calc.getResultado());
                     calc.setOperadorSelecionado(false);
+                    calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
                 } else {
                     reviewTexto.setText(num2 + " =");
                     resultadoTexto.setText(String.valueOf(num2));
+                    calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
                 }
             }
         } catch (ArithmeticException e) {

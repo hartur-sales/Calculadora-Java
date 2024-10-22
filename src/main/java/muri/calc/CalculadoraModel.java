@@ -17,6 +17,10 @@
 
 package muri.calc;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -32,7 +36,7 @@ public class CalculadoraModel {
     private double num2;
     private double resultado;
 
-    private ArrayList<String> calculos = new ArrayList<>();
+    private final ArrayList<String> calculos = new ArrayList<>();
 
     public ArrayList<String> getCalculos() {
         return calculos;
@@ -40,10 +44,6 @@ public class CalculadoraModel {
 
     public void addCalculo(String calculadoraModel) {
         calculos.add(calculadoraModel);
-    }
-
-    public void removeCalculo(String calculadoraModel) {
-        calculos.remove(calculadoraModel);
     }
 
     public double getNum1() {
@@ -85,6 +85,41 @@ public class CalculadoraModel {
 
     public void setResultado(double resultado) {
         this.resultado = resultado;
+    }
+
+    public void deletarArquivo() {
+        String resourcesPath = System.getProperty("user.dir") + "/src/main/resources/out";
+        File outDir = new File(resourcesPath);
+
+        if (outDir.exists()) {
+            File calculoFile = new File(outDir, "calculos.csv");
+            if (calculoFile.exists()) {
+                boolean fileDeleted = calculoFile.delete();
+            }
+
+            boolean deleteDir = outDir.delete();
+        }
+    }
+
+    public void criarArquivo() {
+        String resourcesPath = System.getProperty("user.dir") + "/src/main/resources/out";
+        File outDir = new File(resourcesPath);
+        if (!outDir.exists()) {
+            boolean created = outDir.mkdirs();
+        }
+        File historyFile = new File(outDir, "calculos.csv");
+        escreverHistorico(historyFile);
+    }
+
+    private void escreverHistorico(File historyFile) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(historyFile))) {
+            for (String calculo : calculos) {
+                bw.write(calculo);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //agora os metodos usados pela calculadora
