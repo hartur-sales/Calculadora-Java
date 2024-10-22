@@ -34,8 +34,6 @@ public class CalculadoraModel {
 
     private ArrayList<String> calculos = new ArrayList<>();
 
-    //getters setters add remove
-
     public ArrayList<String> getCalculos() {
         return calculos;
     }
@@ -127,9 +125,9 @@ public class CalculadoraModel {
         return switch (operador) {
             case '+' -> somar(num1, num2);
             case '-' -> subtrair(num1, num2);
-            case '*' -> multiplicar(num1, num2);
+            case 'x' -> multiplicar(num1, num2);
             case '/' -> dividir(num1, num2);
-            case 'e' -> calcularPotencia(num1, num2);
+            case '^' -> calcularPotencia(num1, num2);
             case 'p' -> calcularPctDeUm(num1, num2);
             case 'r' -> calcularRaiz(num1);
             //tá faltando o outro de porcentagem
