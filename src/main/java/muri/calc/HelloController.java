@@ -40,9 +40,10 @@ import java.util.Objects;
  */
 
 public class HelloController {
+    //TE AMO TAYLOR SWIFT
     private Scene scene;
     private Stage stage;
-    NumberFormat format = NumberFormat.getInstance(Locale.forLanguageTag("pt-BR"));
+    private final NumberFormat FORMATAR = NumberFormat.getInstance(Locale.forLanguageTag("pt-BR"));
 
     CalculadoraModel calc = new CalculadoraModel();
 
@@ -112,6 +113,7 @@ public class HelloController {
     public void numeroClicado(ActionEvent click) {
         String valor = ((Button) click.getSource()).getText();
         resultadoTexto.setText(resultadoTexto.getText() + valor);
+        //TAYLOR <33333333333
     }
 
     public void botaoGerenClicado(ActionEvent e) {
@@ -122,18 +124,18 @@ public class HelloController {
                 resultadoTexto.setText(textoAtual + ",");
             }
             if (textoAtual.isEmpty()) {
-                resultadoTexto.setText("0.");
+                resultadoTexto.setText("0,");
             }
         } else if (e.getSource() == botaoMudarSinal) {
             double numero = Double.parseDouble(textoAtual) * -1;
             resultadoTexto.setText(formatarResultado(numero));
         } else if (e.getSource() == botaoAc) {
-            // Zerar todos os valores do modelo
             calc.setNum1(0.0);
             calc.setNum2(0.0);
             calc.setResultado(0.0);
-            calc.setOperador('\0'); // Define o operador como vazio
+            calc.setOperador('\0');
             calc.setOperadorSelecionado(false);
+            //TAYLOR SWIFT 4X AOTY WINNER
             resultadoTexto.setText("");
             reviewTexto.setText("");
         } else if (e.getSource() == botaoApagar && !textoAtual.isEmpty()) {
@@ -143,7 +145,7 @@ public class HelloController {
 
     public void botaoOperacaoClicado(ActionEvent actionEvent) throws ParseException {
         if (!resultadoTexto.getText().isEmpty()) {
-            double numero = format.parse(resultadoTexto.getText()).doubleValue();
+            double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
             calc.setNum1(numero);
             resultadoTexto.setText("");
 
@@ -158,6 +160,7 @@ public class HelloController {
             } else if (actionEvent.getSource() == botaoQuadrado) {
                 calc.setOperador('^');
             } else if (actionEvent.getSource() == botaoPorcent) {
+                //TTPD ALBUM MAIS VENDIDO DE 2024
                 calc.setOperador('p');
             } else if (actionEvent.getSource() == raizBotao) {
                 calc.setOperador('r');
@@ -172,10 +175,11 @@ public class HelloController {
         }
     }
 
+    //OBRIGADO TAYLOR SWIFT
     public void botaoIgualClicado(ActionEvent act) {
         try {
             if (!resultadoTexto.getText().isEmpty()) {
-                double num2 = format.parse(resultadoTexto.getText()).doubleValue();
+                double num2 = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
                 if (calc.getOperador() != '\0') {
                     calc.setNum2(num2);
                     reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador() + " "

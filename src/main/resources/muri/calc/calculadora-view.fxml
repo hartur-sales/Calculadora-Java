@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox maxHeight="Infinity" maxWidth="Infinity" spacing="15.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="muri.calc.HelloController">
+    <!-- TE AMO MT TAYLOR -->
     <padding>
         <Insets bottom="32.0" left="34.0" right="32.0" top="12.0" />
     </padding>
@@ -60,7 +61,7 @@
         <Button fx:id="botaoNove" maxHeight="Infinity" maxWidth="Infinity" onAction="#numeroClicado" styleClass="button-number" text="9" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
 
         <!-- Botoes de gerenciamento -->
-        <Button fx:id="botaoDecimal" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoGerenClicado" styleClass="button-number" text="." GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
+        <Button fx:id="botaoDecimal" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoGerenClicado" styleClass="button-number" text="," GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="botaoMudarSinal" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoGerenClicado" styleClass="button-number-maismenos" text="+/-" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="botaoAc" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoGerenClicado" styleClass="button-deletes" text="Ac" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
         <Button fx:id="botaoApagar" maxHeight="Infinity" maxWidth="Infinity" onAction="#botaoGerenClicado" styleClass="button-deletes" GridPane.columnIndex="3" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
@@ -71,6 +72,7 @@
             </graphic>
         </Button>
         <columnConstraints>
+            <!-- THE ERAS TOUR MAIOR TURNE DA HISTÓRIA -->
             <ColumnConstraints percentWidth="25.0" />
             <ColumnConstraints percentWidth="25.0" />
             <ColumnConstraints percentWidth="25.0" />
