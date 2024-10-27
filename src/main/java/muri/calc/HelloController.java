@@ -42,8 +42,8 @@ import java.util.Objects;
 public class HelloController {
     //TE AMO TAYLOR SWIFT
     private Scene scene;
-    private Stage stage;
     private final NumberFormat FORMATAR = NumberFormat.getInstance(Locale.forLanguageTag("pt-BR"));
+    private static final DecimalFormat FORMATO_DECIMAL = new DecimalFormat("#.#####");
 
     CalculadoraModel calc = new CalculadoraModel();
 
@@ -75,8 +75,7 @@ public class HelloController {
     }
 
     public void setStage(Stage stage) {
-        this.stage = stage;
-        this.stage.setOnCloseRequest(this::fecharApp);
+        stage.setOnCloseRequest(this::fecharApp);
     }
 
     private void fecharApp(WindowEvent event) {
@@ -89,7 +88,7 @@ public class HelloController {
         reviewTexto.setText("");
     }
 
-    public void mudarTema(ActionEvent actionEvent) {
+    public void mudarTema() {
         if (temaAtual) {
             aplicarTema(temaClaro, "/images/dark-mode.png", "/images/backspace-dark.png");
         } else {
@@ -116,14 +115,7 @@ public class HelloController {
         if (!calc.isResultadoCalculado()) {
             resultadoTexto.setText(resultadoTexto.getText() + valor);
         } else {
-            calc.setNum1(0.0);
-            calc.setNum2(0.0);
-            calc.setResultado(0.0);
-            calc.setOperador('\0');
-            calc.setOperadorSelecionado(false);
-            calc.setResultadoCalculado(false);
-            resultadoTexto.setText("");
-            reviewTexto.setText("");
+            limpar();
             resultadoTexto.setText(resultadoTexto.getText() + valor);
         }
     }
@@ -132,24 +124,17 @@ public class HelloController {
         String textoAtual = resultadoTexto.getText();
 
         if (e.getSource() == botaoDecimal) {
-            if (!textoAtual.contains(",")) {
-                resultadoTexto.setText(textoAtual + ",");
-            }
-            if (textoAtual.isEmpty()) {
+            if (textoAtual.isEmpty() || calc.isResultadoCalculado()) {
+                limpar();
                 resultadoTexto.setText("0,");
+            } else if (!textoAtual.contains(",")) {
+                resultadoTexto.setText(textoAtual + ",");
             }
         } else if (e.getSource() == botaoMudarSinal) {
             double numero = Double.parseDouble(textoAtual) * -1;
             resultadoTexto.setText(formatarResultado(numero));
         } else if (e.getSource() == botaoAc) {
-            calc.setNum1(0.0);
-            calc.setNum2(0.0);
-            calc.setResultado(0.0);
-            calc.setOperador('\0');
-            calc.setOperadorSelecionado(false);
-            //TAYLOR SWIFT 4X AOTY WINNER
-            resultadoTexto.setText("");
-            reviewTexto.setText("");
+            limpar();
         } else if (e.getSource() == botaoApagar && !textoAtual.isEmpty()) {
             resultadoTexto.setText(textoAtual.substring(0, textoAtual.length() - 1));
         }
@@ -172,7 +157,6 @@ public class HelloController {
             } else if (actionEvent.getSource() == botaoQuadrado) {
                 calc.setOperador('^');
             } else if (actionEvent.getSource() == botaoPorcent) {
-                //TTPD ALBUM MAIS VENDIDO DE 2024
                 calc.setOperador('p');
             } else if (actionEvent.getSource() == raizBotao) {
                 calc.setOperador('r');
@@ -181,6 +165,7 @@ public class HelloController {
                 resultadoTexto.setText(formatarResultado(calc.getResultado()));
                 calc.setNum1(calc.getResultado());
                 calc.addCalculo(reviewTexto.getText() + " = " + resultadoTexto.getText());
+                calc.setResultadoCalculado(true);
                 return;
             }
             reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador());
@@ -188,7 +173,7 @@ public class HelloController {
     }
 
     //OBRIGADO TAYLOR SWIFT
-    public void botaoIgualClicado(ActionEvent act) {
+    public void botaoIgualClicado() {
         try {
             if (!resultadoTexto.getText().isEmpty()) {
                 double num2 = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
@@ -199,7 +184,6 @@ public class HelloController {
                     calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
                     resultadoTexto.setText(formatarResultado(calc.getResultado()));
                     calc.setNum1(calc.getResultado());
-                    calc.setOperadorSelecionado(false);
                     calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
                 } else {
                     reviewTexto.setText(formatarResultado(num2) + " =");
@@ -207,16 +191,25 @@ public class HelloController {
                     calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
                 }
             }
+            calc.setOperadorSelecionado(false);
             calc.setResultadoCalculado(true);
-        } catch (ArithmeticException e) {
-            resultadoTexto.setText(e.getMessage());
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
+        } catch (ArithmeticException | ParseException e) {
+            resultadoTexto.setText("Erro: " + e.getMessage());
         }
     }
 
+    private void limpar() {
+        calc.setNum1(0.0);
+        calc.setNum2(0.0);
+        calc.setResultado(0.0);
+        calc.setOperador('\0');
+        calc.setOperadorSelecionado(false);
+        calc.setResultadoCalculado(false);
+        resultadoTexto.setText("");
+        reviewTexto.setText("");
+    }
+
     private String formatarResultado(double valor) {
-        DecimalFormat df = new DecimalFormat("#.#####");
-        return (valor % 1 != 0) ? df.format(valor) : String.valueOf((int) valor);
+        return (valor % 1 != 0) ? FORMATO_DECIMAL.format(valor) : String.valueOf((int) valor);
     }
 }
