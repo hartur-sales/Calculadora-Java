@@ -114,6 +114,7 @@ public class HelloController {
         }
         String valor = ((Button) click.getSource()).getText();
 
+        //se resultado calculado for false, nao limpa. se for true, limpa
         if (!calc.isResultadoCalculado()) {
             resultadoTexto.setText(resultadoTexto.getText() + valor);
         } else {
@@ -137,8 +138,10 @@ public class HelloController {
                 resultadoTexto.setText(textoAtual + ",");
             }
         } else if (e.getSource() == botaoMudarSinal) {
-            double numero = Double.parseDouble(textoAtual) * -1;
-            resultadoTexto.setText(formatarResultado(numero));
+            if (!textoAtual.isEmpty()) {
+                double numero = Double.parseDouble(textoAtual) * -1;
+                resultadoTexto.setText(formatarResultado(numero));
+            }
         } else if (e.getSource() == botaoAc) {
             limpar();
         } else if (e.getSource() == botaoApagar && !textoAtual.isEmpty()) {
@@ -151,6 +154,7 @@ public class HelloController {
             double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
             calc.setNum1(numero);
             resultadoTexto.setText("");
+            calc.setResultadoCalculado(false);
 
             if (actionEvent.getSource() == botaoSomar) {
                 calc.setOperador('+');
