@@ -18,6 +18,7 @@
 package muri.calc;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -71,6 +72,37 @@ public class HelloController {
 
     public void setScene(Scene scene) {
         this.scene = scene;
+        typewriterAtMyApartment();
+    }
+
+    private void typewriterAtMyApartment() {
+        scene.setOnKeyPressed(event -> {
+            System.out.println("Tecla pressionada: " + event.getCode());
+            try {
+                switch (event.getCode()) {
+                    case ESCAPE -> limpar();
+                    case BACK_SPACE -> botaoBackspaceClicado();
+                    case PERIOD, DECIMAL, COMMA -> botaoDecimalClicado();
+                    case ENTER -> botaoIgualClicado();
+                    case ADD -> botaoOperacaoClicado(new ActionEvent(botaoSomar, Event.NULL_SOURCE_TARGET));
+                    case SUBTRACT -> botaoOperacaoClicado(new ActionEvent(botaoSubtrair, Event.NULL_SOURCE_TARGET));
+                    case MULTIPLY -> botaoOperacaoClicado(new ActionEvent(botaoMultiplicar, Event.NULL_SOURCE_TARGET));
+                    case DIVIDE -> botaoOperacaoClicado(new ActionEvent(botaoDividir, Event.NULL_SOURCE_TARGET));
+                    case DIGIT0, NUMPAD0 -> lidarNumeros("0");
+                    case DIGIT1, NUMPAD1 -> lidarNumeros("1");
+                    case DIGIT2, NUMPAD2 -> lidarNumeros("2");
+                    case DIGIT3, NUMPAD3 -> lidarNumeros("3");
+                    case DIGIT4, NUMPAD4 -> lidarNumeros("4");
+                    case DIGIT5, NUMPAD5 -> lidarNumeros("5");
+                    case DIGIT6, NUMPAD6 -> lidarNumeros("6");
+                    case DIGIT7, NUMPAD7 -> lidarNumeros("7");
+                    case DIGIT8, NUMPAD8 -> lidarNumeros("8");
+                    case DIGIT9, NUMPAD9 -> lidarNumeros("9");
+                }
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     public void setStage(Stage stage) {
@@ -107,20 +139,23 @@ public class HelloController {
         deleteImagem.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(deleteImg))));
     }
 
-    //qual botão foi clicado
-    public void numeroClicado(ActionEvent click) {
+    public void botaoNumeroClicado(ActionEvent click) {
         if (calc.isExibindoErro()) {
             limpar();
         }
         String valor = ((Button) click.getSource()).getText();
+        lidarNumeros(valor);
+    }
 
+    public void lidarNumeros(String numero) {
         //se resultado calculado for false, nao limpa. se for true, limpa
         if (!calc.isResultadoCalculado()) {
-            resultadoTexto.setText(resultadoTexto.getText() + valor);
+            resultadoTexto.setText(resultadoTexto.getText() + numero);
         } else {
             limpar();
-            resultadoTexto.setText(resultadoTexto.getText() + valor);
+            resultadoTexto.setText(resultadoTexto.getText() + numero);
         }
+
     }
 
     public void botaoGerenClicado(ActionEvent e) {
@@ -131,12 +166,7 @@ public class HelloController {
         String textoAtual = resultadoTexto.getText();
 
         if (e.getSource() == botaoDecimal) {
-            if (textoAtual.isEmpty() || calc.isResultadoCalculado()) {
-                limpar();
-                resultadoTexto.setText("0,");
-            } else if (!textoAtual.contains(",")) {
-                resultadoTexto.setText(textoAtual + ",");
-            }
+            botaoDecimalClicado();
         } else if (e.getSource() == botaoMudarSinal) {
             if (!textoAtual.isEmpty()) {
                 double numero = Double.parseDouble(textoAtual) * -1;
@@ -145,7 +175,22 @@ public class HelloController {
         } else if (e.getSource() == botaoAc) {
             limpar();
         } else if (e.getSource() == botaoApagar && !textoAtual.isEmpty()) {
-            resultadoTexto.setText(textoAtual.substring(0, textoAtual.length() - 1));
+            botaoBackspaceClicado();
+        }
+    }
+
+    public void botaoBackspaceClicado() {
+        String textoAtual = resultadoTexto.getText();
+        resultadoTexto.setText(textoAtual.substring(0, textoAtual.length() - 1));
+    }
+
+    public void botaoDecimalClicado() {
+        String textoAtual = resultadoTexto.getText();
+        if (textoAtual.isEmpty() || calc.isResultadoCalculado()) {
+            limpar();
+            resultadoTexto.setText("0,");
+        } else if (!textoAtual.contains(",")) {
+            resultadoTexto.setText(textoAtual + ",");
         }
     }
 
@@ -224,6 +269,8 @@ public class HelloController {
     private void exibirErro(String mensagemErro) {
         resultadoTexto.setStyle("-fx-font-size: " + 20 + "px;");
         resultadoTexto.setText(mensagemErro);
+        calc.setOperadorSelecionado(false);
+        calc.setResultadoCalculado(true);
         calc.setExibindoErro(true);
     }
 
