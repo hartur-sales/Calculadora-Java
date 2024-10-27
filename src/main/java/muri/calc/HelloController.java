@@ -112,8 +112,20 @@ public class HelloController {
     //qual botão foi clicado
     public void numeroClicado(ActionEvent click) {
         String valor = ((Button) click.getSource()).getText();
-        resultadoTexto.setText(resultadoTexto.getText() + valor);
-        //TAYLOR <33333333333
+
+        if (!calc.isResultadoCalculado()) {
+            resultadoTexto.setText(resultadoTexto.getText() + valor);
+        } else {
+            calc.setNum1(0.0);
+            calc.setNum2(0.0);
+            calc.setResultado(0.0);
+            calc.setOperador('\0');
+            calc.setOperadorSelecionado(false);
+            calc.setResultadoCalculado(false);
+            resultadoTexto.setText("");
+            reviewTexto.setText("");
+            resultadoTexto.setText(resultadoTexto.getText() + valor);
+        }
     }
 
     public void botaoGerenClicado(ActionEvent e) {
@@ -195,6 +207,7 @@ public class HelloController {
                     calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
                 }
             }
+            calc.setResultadoCalculado(true);
         } catch (ArithmeticException e) {
             resultadoTexto.setText(e.getMessage());
         } catch (ParseException e) {

@@ -35,6 +35,7 @@ public class CalculadoraModel {
     private boolean operadorSelecionado = false;
     private double num2;
     private double resultado;
+    private boolean resultadoCalculado = false;
 
     private final ArrayList<String> calculos = new ArrayList<>();
 
@@ -85,6 +86,14 @@ public class CalculadoraModel {
 
     public void setResultado(double resultado) {
         this.resultado = resultado;
+    }
+
+    public boolean isResultadoCalculado() {
+        return resultadoCalculado;
+    }
+
+    public void setResultadoCalculado(boolean resultadoCalculado) {
+        this.resultadoCalculado = resultadoCalculado;
     }
 
     public void deletarArquivo() {
