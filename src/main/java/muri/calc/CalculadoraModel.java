@@ -99,25 +99,31 @@ public class CalculadoraModel {
     public void deletarArquivo() {
         String resourcesPath = System.getProperty("user.dir") + "/src/main/resources/out";
         File outDir = new File(resourcesPath);
+        File calculoFile = new File(outDir, "calculos.csv");
 
-        if (outDir.exists()) {
-            File calculoFile = new File(outDir, "calculos.csv");
-            if (calculoFile.exists()) {
-                boolean fileDeleted = calculoFile.delete();
-            }
+        if (calculoFile.exists() && calculoFile.delete()) {
+            System.out.println("Arquivo de cálculos deletado com sucesso.");
+        } else {
+            System.out.println("Falha ao deletar arquivo de cálculos.");
+        }
 
-            boolean deleteDir = outDir.delete();
+        if (outDir.exists() && outDir.delete()) {
+            System.out.println("Diretório de saída deletado com sucesso.");
+        } else {
+            System.out.println("Falha ao deletar diretório de saída.");
         }
     }
 
     public void criarArquivo() {
         String resourcesPath = System.getProperty("user.dir") + "/src/main/resources/out";
         File outDir = new File(resourcesPath);
-        if (!outDir.exists()) {
-            boolean created = outDir.mkdirs();
+
+        if (outDir.exists() || outDir.mkdirs()) {
+            File historyFile = new File(outDir, "calculos.csv");
+            escreverHistorico(historyFile);
+        } else {
+            System.err.println("Falha ao criar diretório: " + resourcesPath);
         }
-        File historyFile = new File(outDir, "calculos.csv");
-        escreverHistorico(historyFile);
     }
 
     private void escreverHistorico(File historyFile) {
