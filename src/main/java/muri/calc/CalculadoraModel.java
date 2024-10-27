@@ -36,6 +36,7 @@ public class CalculadoraModel {
     private double num2;
     private double resultado;
     private boolean resultadoCalculado = false;
+    private boolean exibindoErro = false;
 
     private final ArrayList<String> calculos = new ArrayList<>();
 
@@ -96,6 +97,14 @@ public class CalculadoraModel {
         this.resultadoCalculado = resultadoCalculado;
     }
 
+    public boolean isExibindoErro() {
+        return exibindoErro;
+    }
+
+    public void setExibindoErro(boolean exibindoErro) {
+        this.exibindoErro = exibindoErro;
+    }
+
     public void deletarArquivo() {
         String resourcesPath = System.getProperty("user.dir") + "/src/main/resources/out";
         File outDir = new File(resourcesPath);
@@ -148,7 +157,7 @@ public class CalculadoraModel {
 
     public double dividir(double num1, double num2) {
         if (num2 == 0) {
-            throw new ArithmeticException("Divisão por zero não é permitida.");
+            throw new ArithmeticException("Não é possível dividir por zero");
         }
         return num1 / num2;
     }

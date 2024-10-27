@@ -69,7 +69,6 @@ public class HelloController {
     private final String temaClaro = Objects.requireNonNull(getClass().getResource("/styles/calculadora-branca.css")).toExternalForm();
     private boolean temaAtual = true; //true para escuro, false para claro
 
-
     public void setScene(Scene scene) {
         this.scene = scene;
     }
@@ -110,6 +109,9 @@ public class HelloController {
 
     //qual botão foi clicado
     public void numeroClicado(ActionEvent click) {
+        if (calc.isExibindoErro()) {
+            limpar();
+        }
         String valor = ((Button) click.getSource()).getText();
 
         if (!calc.isResultadoCalculado()) {
@@ -121,6 +123,10 @@ public class HelloController {
     }
 
     public void botaoGerenClicado(ActionEvent e) {
+        if (calc.isExibindoErro()) {
+            limpar();
+        }
+
         String textoAtual = resultadoTexto.getText();
 
         if (e.getSource() == botaoDecimal) {
@@ -193,8 +199,9 @@ public class HelloController {
             }
             calc.setOperadorSelecionado(false);
             calc.setResultadoCalculado(true);
+            restaurarFonte();
         } catch (ArithmeticException | ParseException e) {
-            resultadoTexto.setText("Erro: " + e.getMessage());
+            exibirErro(e.getMessage());
         }
     }
 
@@ -207,6 +214,18 @@ public class HelloController {
         calc.setResultadoCalculado(false);
         resultadoTexto.setText("");
         reviewTexto.setText("");
+        restaurarFonte();
+    }
+
+    private void exibirErro(String mensagemErro) {
+        resultadoTexto.setStyle("-fx-font-size: " + 20 + "px;");
+        resultadoTexto.setText(mensagemErro);
+        calc.setExibindoErro(true);
+    }
+
+    private void restaurarFonte() {
+        resultadoTexto.setStyle("-fx-font-size: " + 70 + "px;");
+        calc.setExibindoErro(false);
     }
 
     private String formatarResultado(double valor) {
