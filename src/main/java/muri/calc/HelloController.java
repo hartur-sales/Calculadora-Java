@@ -77,7 +77,7 @@ public class HelloController {
 
     private void typewriterAtMyApartment() {
         scene.setOnKeyPressed(event -> {
-            System.out.println("Tecla pressionada: " + event.getCode());
+            //System.out.println("Tecla pressionada: " + event.getCode());
             try {
                 switch (event.getCode()) {
                     case ESCAPE -> limpar();
@@ -155,7 +155,6 @@ public class HelloController {
             limpar();
             resultadoTexto.setText(resultadoTexto.getText() + numero);
         }
-
     }
 
     public void botaoGerenClicado(ActionEvent e) {
@@ -183,6 +182,7 @@ public class HelloController {
     }
 
     public void botaoOperacaoClicado(ActionEvent actionEvent) throws ParseException {
+        desabiltarBotoes(false);
         if (!resultadoTexto.getText().isEmpty()) {
             double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
             calc.setNum1(numero);
@@ -201,17 +201,23 @@ public class HelloController {
                 calc.setOperador('^');
             } else if (actionEvent.getSource() == botaoPorcent) {
                 calc.setOperador('p');
-            } else if (actionEvent.getSource() == botaoRaiz) {
-                calc.setOperador('r');
-                calc.setResultado(calc.calcularRaiz(numero));
-                reviewTexto.setText("√" + formatarResultado(calc.getNum1()));
-                resultadoTexto.setText(formatarResultado(calc.getResultado()));
-                calc.setNum1(calc.getResultado());
-                calc.addCalculo(reviewTexto.getText() + " = " + resultadoTexto.getText());
-                calc.setResultadoCalculado(true);
-                return;
             }
             reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador());
+        }
+    }
+
+    public void botaoRaizClicado() throws ParseException {
+        if (!resultadoTexto.getText().isEmpty()) {
+            double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
+            calc.setNum1(numero);
+            calc.setOperador('r');
+            calc.setResultado(calc.calcularRaiz(numero));
+            reviewTexto.setText("√" + formatarResultado(calc.getNum1()));
+            resultadoTexto.setText(formatarResultado(calc.getResultado()));
+            calc.setNum1(calc.getResultado());
+            calc.addCalculo(reviewTexto.getText() + " = " + resultadoTexto.getText());
+            calc.setResultadoCalculado(true);
+            botaoIgual.setDisable(true);
         }
     }
 
@@ -236,7 +242,6 @@ public class HelloController {
             }
             calc.setOperadorSelecionado(false);
             calc.setResultadoCalculado(true);
-            restaurarFonte();
         } catch (ArithmeticException | ParseException e) {
             exibirErro(e.getMessage());
         }
@@ -252,7 +257,9 @@ public class HelloController {
         calc.setResultadoCalculado(false);
         resultadoTexto.setText("");
         reviewTexto.setText("");
-        restaurarFonte();
+        resultadoTexto.setStyle("-fx-font-size: " + 70 + "px;");
+        calc.setExibindoErro(false);
+        desabiltarBotoes(false);
     }
 
     private void exibirErro(String mensagemErro) {
@@ -262,12 +269,6 @@ public class HelloController {
         calc.setResultadoCalculado(true);
         calc.setExibindoErro(true);
         desabiltarBotoes(true);
-    }
-
-    private void restaurarFonte() {
-        resultadoTexto.setStyle("-fx-font-size: " + 70 + "px;");
-        calc.setExibindoErro(false);
-        desabiltarBotoes(false);
     }
 
     private void desabiltarBotoes(boolean b) {
