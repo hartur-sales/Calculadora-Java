@@ -183,27 +183,41 @@ public class HelloController {
 
     public void botaoOperacaoClicado(ActionEvent actionEvent) throws ParseException {
         desabiltarBotoes(false);
+
+        char operadorTemporario = '\0';
+        if (actionEvent.getSource() == botaoSomar) {
+            operadorTemporario = '+';
+        } else if (actionEvent.getSource() == botaoSubtrair) {
+            operadorTemporario = '-';
+        } else if (actionEvent.getSource() == botaoMultiplicar) {
+            operadorTemporario = 'x';
+        } else if (actionEvent.getSource() == botaoDividir) {
+            operadorTemporario = '/';
+        } else if (actionEvent.getSource() == botaoQuadrado) {
+            operadorTemporario = '^';
+        } else if (actionEvent.getSource() == botaoPorcent) {
+            operadorTemporario = 'p';
+        }
+
+        // essa parte corrige o operador, caso o usuario digite errado
+        // por exemplo, 8 + pode ser corrigido pra 8 /
+        if (calc.getOperador() != '\0' && resultadoTexto.getText().isEmpty()) {
+            calc.setOperador(operadorTemporario);
+            reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador());
+            System.out.println("redefinindo");
+            return;
+        }
+
+        // lógica padrao
         if (!resultadoTexto.getText().isEmpty()) {
             double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
             calc.setNum1(numero);
             resultadoTexto.setText("");
-            calc.setResultadoCalculado(false);
-
-            if (actionEvent.getSource() == botaoSomar) {
-                calc.setOperador('+');
-            } else if (actionEvent.getSource() == botaoSubtrair) {
-                calc.setOperador('-');
-            } else if (actionEvent.getSource() == botaoMultiplicar) {
-                calc.setOperador('x');
-            } else if (actionEvent.getSource() == botaoDividir) {
-                calc.setOperador('/');
-            } else if (actionEvent.getSource() == botaoQuadrado) {
-                calc.setOperador('^');
-            } else if (actionEvent.getSource() == botaoPorcent) {
-                calc.setOperador('p');
-            }
-            reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador());
         }
+
+        calc.setOperador(operadorTemporario);
+        reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador());
+        calc.setResultadoCalculado(false);
     }
 
     public void botaoRaizClicado() throws ParseException {
@@ -221,7 +235,6 @@ public class HelloController {
         }
     }
 
-    //OBRIGADO TAYLOR SWIFT
     public void botaoIgualClicado() {
         try {
             if (!resultadoTexto.getText().isEmpty()) {
