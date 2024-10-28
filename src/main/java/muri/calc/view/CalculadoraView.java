@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package muri.calc;
+package muri.calc.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import muri.calc.controller.HelloController;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -33,16 +34,16 @@ import java.util.Objects;
  * @brief Class HelloApplication
  */
 
-public class HelloApplication extends Application {
+public class CalculadoraView extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //System.out.println(Font.loadFont(Objects.requireNonNull(HelloApplication.class.getResource("/font/HindSiliguri-Medium.ttf")).toExternalForm(), 10));
 
         //carregar a fonte
-        Font.loadFont(Objects.requireNonNull(HelloApplication.class.getResource("/font/HindSiliguri-Medium.ttf")).toExternalForm(), 10);
+        Font.loadFont(Objects.requireNonNull(CalculadoraView.class.getResource("/font/HindSiliguri-Medium.ttf")).toExternalForm(), 10);
 
         //carregar o fxml
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("calculadora-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/muri/calc/calculadora-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles/calculadora.css")).toExternalForm());
 
@@ -50,12 +51,12 @@ public class HelloApplication extends Application {
         controller.setScene(scene);
 
         //adiciona o icone do programa
-        stage.getIcons().add(new Image(Objects.requireNonNull(HelloApplication.class.getResourceAsStream("/images/icon.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(CalculadoraView.class.getResourceAsStream("/images/icon.png"))));
         stage.setTitle("Calculadora");
         stage.setScene(scene);
         controller.setStage(stage);
         stage.show();
-        controller.calc.deletarArquivo();
+        controller.hist.deletarArquivo();
     }
 
     public static void main(String[] args) {

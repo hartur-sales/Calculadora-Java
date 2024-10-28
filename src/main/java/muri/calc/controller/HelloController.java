@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package muri.calc;
+package muri.calc.controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -27,6 +27,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import muri.calc.model.historico.HistoricoModel;
+import muri.calc.model.operacoes.CalculadoraModel;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -46,7 +48,8 @@ public class HelloController {
     private final NumberFormat FORMATAR = NumberFormat.getInstance(Locale.forLanguageTag("pt-BR"));
     private static final DecimalFormat FORMATO_DECIMAL = new DecimalFormat("#,##0.#####");
 
-    CalculadoraModel calc = new CalculadoraModel();
+    public CalculadoraModel calc = new CalculadoraModel();
+    public HistoricoModel hist = new HistoricoModel();
 
     //botoes de operaçao
     @FXML
@@ -111,7 +114,7 @@ public class HelloController {
     }
 
     private void fecharApp(WindowEvent event) {
-        calc.criarArquivo();
+        hist.criarArquivo(calc.calculos);
     }
 
     @FXML
@@ -212,6 +215,8 @@ public class HelloController {
             double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
             calc.setNum1(numero);
             resultadoTexto.setText("");
+        } else {
+            return;
         }
 
         calc.setOperador(operadorTemporario);
@@ -235,7 +240,6 @@ public class HelloController {
     }
 
     public void botaoIgualClicado() {
-        System.out.println(calc.getOperador());
         try {
             if (!resultadoTexto.getText().isEmpty()) {
                 double num2 = FORMATAR.parse(resultadoTexto.getText()).doubleValue();

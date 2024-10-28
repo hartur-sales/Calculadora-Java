@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package muri.calc;
+package muri.calc.model.operacoes;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -38,7 +38,7 @@ public class CalculadoraModel {
     private boolean resultadoCalculado = false;
     private boolean exibindoErro = false;
 
-    private final ArrayList<String> calculos = new ArrayList<>();
+    public final ArrayList<String> calculos = new ArrayList<>();
 
     public ArrayList<String> getCalculos() {
         return calculos;
@@ -105,46 +105,6 @@ public class CalculadoraModel {
         this.exibindoErro = exibindoErro;
     }
 
-    public void deletarArquivo() {
-        String resourcesPath = System.getProperty("user.dir") + "/src/main/resources/out";
-        File outDir = new File(resourcesPath);
-        File calculoFile = new File(outDir, "calculos.csv");
-
-        if (calculoFile.exists() && calculoFile.delete()) {
-            System.out.println("Arquivo de cálculos deletado com sucesso.");
-        } else {
-            System.out.println("Falha ao deletar arquivo de cálculos.");
-        }
-
-        if (outDir.exists() && outDir.delete()) {
-            System.out.println("Diretório de saída deletado com sucesso.");
-        } else {
-            System.out.println("Falha ao deletar diretório de saída.");
-        }
-    }
-
-    public void criarArquivo() {
-        String resourcesPath = System.getProperty("user.dir") + "/src/main/resources/out";
-        File outDir = new File(resourcesPath);
-
-        if (outDir.exists() || outDir.mkdirs()) {
-            File historyFile = new File(outDir, "calculos.csv");
-            escreverHistorico(historyFile);
-        } else {
-            System.err.println("Falha ao criar diretório: " + resourcesPath);
-        }
-    }
-
-    private void escreverHistorico(File historyFile) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(historyFile))) {
-            for (String calculo : calculos) {
-                bw.write(calculo);
-                bw.newLine();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     //agora os metodos usados pela calculadora
     public double somar(double num1, double num2) {
