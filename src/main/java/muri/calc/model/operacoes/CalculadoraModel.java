@@ -17,10 +17,8 @@
 
 package muri.calc.model.operacoes;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -38,14 +36,16 @@ public class CalculadoraModel {
     private boolean resultadoCalculado = false;
     private boolean exibindoErro = false;
 
-    public final ArrayList<String> calculos = new ArrayList<>();
+    public final ArrayList<String> logging = new ArrayList<>();
 
-    public ArrayList<String> getCalculos() {
-        return calculos;
+    public ArrayList<String> getLogging() {
+        return logging;
     }
 
-    public void addCalculo(String calculadoraModel) {
-        calculos.add(calculadoraModel);
+    public void addCalculo(String calculoFeito) {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime data = LocalDateTime.now();
+        logging.add(data.format(fmt)+" -> "+calculoFeito);
     }
 
     public double getNum1() {
@@ -105,7 +105,6 @@ public class CalculadoraModel {
         this.exibindoErro = exibindoErro;
     }
 
-
     //agora os metodos usados pela calculadora
     public double somar(double num1, double num2) {
         return num1 + num2;
@@ -146,7 +145,7 @@ public class CalculadoraModel {
             case 'x' -> multiplicar(num1, num2);
             case '/' -> dividir(num1, num2);
             case '^' -> calcularPotencia(num1, num2);
-            case 'p' -> calcularPctDeUm(num1, num2);
+            case '%' -> calcularPctDeUm(num1, num2);
             case 'r' -> calcularRaiz(num1);
             //tá faltando o outro de porcentagem
             default -> throw new IllegalArgumentException("Operação desconhecida: " + operador);
