@@ -44,7 +44,7 @@ public class HelloController {
     //TE AMO TAYLOR SWIFT
     private Scene scene;
     private final NumberFormat FORMATAR = NumberFormat.getInstance(Locale.forLanguageTag("pt-BR"));
-    private static final DecimalFormat FORMATO_DECIMAL = new DecimalFormat("#.#####");
+    private static final DecimalFormat FORMATO_DECIMAL = new DecimalFormat("#,##0.#####");
 
     CalculadoraModel calc = new CalculadoraModel();
 
@@ -82,7 +82,8 @@ public class HelloController {
                 switch (event.getCode()) {
                     case ESCAPE -> limpar();
                     case BACK_SPACE -> botaoGerenClicado(new ActionEvent(botaoApagar, Event.NULL_SOURCE_TARGET));
-                    case PERIOD, DECIMAL, COMMA -> botaoGerenClicado(new ActionEvent(botaoDecimal, Event.NULL_SOURCE_TARGET));
+                    case PERIOD, DECIMAL, COMMA ->
+                            botaoGerenClicado(new ActionEvent(botaoDecimal, Event.NULL_SOURCE_TARGET));
                     case ENTER -> botaoIgualClicado();
                     case ADD -> botaoOperacaoClicado(new ActionEvent(botaoSomar, Event.NULL_SOURCE_TARGET));
                     case SUBTRACT -> botaoOperacaoClicado(new ActionEvent(botaoSubtrair, Event.NULL_SOURCE_TARGET));
@@ -149,12 +150,10 @@ public class HelloController {
 
     public void lidarNumeros(String numero) {
         //se resultado calculado for false, nao limpa. se for true, limpa
-        if (!calc.isResultadoCalculado()) {
-            resultadoTexto.setText(resultadoTexto.getText() + numero);
-        } else {
+        if (calc.isResultadoCalculado()) {
             limpar();
-            resultadoTexto.setText(resultadoTexto.getText() + numero);
         }
+        resultadoTexto.setText(resultadoTexto.getText() + numero);
     }
 
     public void botaoGerenClicado(ActionEvent e) {
@@ -236,6 +235,7 @@ public class HelloController {
     }
 
     public void botaoIgualClicado() {
+        System.out.println(calc.getOperador());
         try {
             if (!resultadoTexto.getText().isEmpty()) {
                 double num2 = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
@@ -246,12 +246,20 @@ public class HelloController {
                     calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
                     resultadoTexto.setText(formatarResultado(calc.getResultado()));
                     calc.setNum1(calc.getResultado());
-                    calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
                 } else {
                     reviewTexto.setText(formatarResultado(num2) + " =");
                     resultadoTexto.setText(formatarResultado(num2));
-                    calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
                 }
+                calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
+            } else if (calc.getOperador() != '\0') {
+                double num2 = calc.getNum1();
+                calc.setNum2(num2);
+                reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador() + " "
+                        + formatarResultado(calc.getNum2()) + " =");
+                calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
+                resultadoTexto.setText(formatarResultado(calc.getResultado()));
+                calc.setNum1(calc.getResultado());
+                calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
             }
             calc.setOperadorSelecionado(false);
             calc.setResultadoCalculado(true);
@@ -298,6 +306,6 @@ public class HelloController {
     }
 
     private String formatarResultado(double valor) {
-        return (valor % 1 != 0) ? FORMATO_DECIMAL.format(valor) : String.valueOf((int) valor);
+        return (valor % 1 != 0) ? FORMATO_DECIMAL.format(valor) : FORMATO_DECIMAL.format((int) valor);
     }
 }
