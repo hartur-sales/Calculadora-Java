@@ -50,7 +50,7 @@ public class HelloController {
 
     //botoes de operaçao
     @FXML
-    private Button botaoDividir, botaoMultiplicar, botaoSubtrair, botaoSomar, botaoIgual, botaoQuadrado, botaoPorcent, raizBotao;
+    private Button botaoDividir, botaoMultiplicar, botaoSubtrair, botaoSomar, botaoIgual, botaoQuadrado, botaoPorcent, botaoRaiz;
 
     //botoes de numeros
     @FXML
@@ -81,8 +81,8 @@ public class HelloController {
             try {
                 switch (event.getCode()) {
                     case ESCAPE -> limpar();
-                    case BACK_SPACE -> botaoBackspaceClicado();
-                    case PERIOD, DECIMAL, COMMA -> botaoDecimalClicado();
+                    case BACK_SPACE -> botaoGerenClicado(new ActionEvent(botaoApagar, Event.NULL_SOURCE_TARGET));
+                    case PERIOD, DECIMAL, COMMA -> botaoGerenClicado(new ActionEvent(botaoDecimal, Event.NULL_SOURCE_TARGET));
                     case ENTER -> botaoIgualClicado();
                     case ADD -> botaoOperacaoClicado(new ActionEvent(botaoSomar, Event.NULL_SOURCE_TARGET));
                     case SUBTRACT -> botaoOperacaoClicado(new ActionEvent(botaoSubtrair, Event.NULL_SOURCE_TARGET));
@@ -166,31 +166,19 @@ public class HelloController {
         String textoAtual = resultadoTexto.getText();
 
         if (e.getSource() == botaoDecimal) {
-            botaoDecimalClicado();
+            if (textoAtual.isEmpty() || calc.isResultadoCalculado()) {
+                limpar();
+                resultadoTexto.setText("0,");
+            } else if (!textoAtual.contains(",")) {
+                resultadoTexto.setText(textoAtual + ",");
+            }
         } else if (e.getSource() == botaoMudarSinal) {
             if (!textoAtual.isEmpty()) {
                 double numero = Double.parseDouble(textoAtual) * -1;
                 resultadoTexto.setText(formatarResultado(numero));
             }
-        } else if (e.getSource() == botaoAc) {
-            limpar();
         } else if (e.getSource() == botaoApagar && !textoAtual.isEmpty()) {
-            botaoBackspaceClicado();
-        }
-    }
-
-    public void botaoBackspaceClicado() {
-        String textoAtual = resultadoTexto.getText();
-        resultadoTexto.setText(textoAtual.substring(0, textoAtual.length() - 1));
-    }
-
-    public void botaoDecimalClicado() {
-        String textoAtual = resultadoTexto.getText();
-        if (textoAtual.isEmpty() || calc.isResultadoCalculado()) {
-            limpar();
-            resultadoTexto.setText("0,");
-        } else if (!textoAtual.contains(",")) {
-            resultadoTexto.setText(textoAtual + ",");
+            resultadoTexto.setText(textoAtual.substring(0, textoAtual.length() - 1));
         }
     }
 
@@ -213,7 +201,7 @@ public class HelloController {
                 calc.setOperador('^');
             } else if (actionEvent.getSource() == botaoPorcent) {
                 calc.setOperador('p');
-            } else if (actionEvent.getSource() == raizBotao) {
+            } else if (actionEvent.getSource() == botaoRaiz) {
                 calc.setOperador('r');
                 calc.setResultado(calc.calcularRaiz(numero));
                 reviewTexto.setText("√" + formatarResultado(calc.getNum1()));
@@ -254,6 +242,7 @@ public class HelloController {
         }
     }
 
+    @FXML
     private void limpar() {
         calc.setNum1(0.0);
         calc.setNum2(0.0);
@@ -272,11 +261,26 @@ public class HelloController {
         calc.setOperadorSelecionado(false);
         calc.setResultadoCalculado(true);
         calc.setExibindoErro(true);
+        desabiltarBotoes(true);
     }
 
     private void restaurarFonte() {
         resultadoTexto.setStyle("-fx-font-size: " + 70 + "px;");
         calc.setExibindoErro(false);
+        desabiltarBotoes(false);
+    }
+
+    private void desabiltarBotoes(boolean b) {
+        botaoIgual.setDisable(b);
+        botaoSomar.setDisable(b);
+        botaoSubtrair.setDisable(b);
+        botaoMultiplicar.setDisable(b);
+        botaoDividir.setDisable(b);
+        botaoQuadrado.setDisable(b);
+        botaoPorcent.setDisable(b);
+        botaoRaiz.setDisable(b);
+        botaoMudarSinal.setDisable(b);
+        botaoDecimal.setDisable(b);
     }
 
     private String formatarResultado(double valor) {
