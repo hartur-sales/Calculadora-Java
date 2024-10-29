@@ -210,6 +210,7 @@ public class HelloController {
             return;
         }
 
+        /*
         // contas consecutivas, por exemplo 2 + 2 + 2
         if (calc.getOperador() != '\0' && !resultadoTexto.getText().isEmpty()) {
             double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
@@ -218,8 +219,9 @@ public class HelloController {
             calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
             resultadoTexto.setText(formatarResultado(calc.getResultado()));
             calc.addCalculo(reviewTexto.getText() + " " + formatarResultado(calc.getNum2()) + " = " + resultadoTexto.getText());
-            calc.setNum1(calc.getResultado());
+            System.out.println(calc.getNum1() + " " + calc.getNum2());
         }
+        */
 
         // lógica padrao
         if (!resultadoTexto.getText().isEmpty()) {
@@ -260,7 +262,6 @@ public class HelloController {
                             + formatarResultado(calc.getNum2()) + " =");
                     calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
                     resultadoTexto.setText(formatarResultado(calc.getResultado()));
-                    calc.setNum1(calc.getResultado());
                 } else {
                     reviewTexto.setText(formatarResultado(num2) + " =");
                     resultadoTexto.setText(formatarResultado(num2));
@@ -273,7 +274,6 @@ public class HelloController {
                         + formatarResultado(calc.getNum2()) + " =");
                 calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
                 resultadoTexto.setText(formatarResultado(calc.getResultado()));
-                calc.setNum1(calc.getResultado());
                 calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
             }
             calc.setOperadorSelecionado(false);
