@@ -114,7 +114,7 @@ public class HelloController {
     }
 
     private void fecharApp(WindowEvent event) {
-        hist.criarArquivo(calc.calculos);
+        hist.criarArquivo(calc.logging);
     }
 
     @FXML
@@ -198,16 +198,27 @@ public class HelloController {
         } else if (actionEvent.getSource() == botaoQuadrado) {
             operadorTemporario = '^';
         } else if (actionEvent.getSource() == botaoPorcent) {
-            operadorTemporario = 'p';
+            operadorTemporario = '%';
         }
+
 
         // essa parte corrige o operador, caso o usuario digite errado
         // por exemplo, 8 + pode ser corrigido pra 8 /
         if (calc.getOperador() != '\0' && resultadoTexto.getText().isEmpty()) {
             calc.setOperador(operadorTemporario);
             reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador());
-            System.out.println("redefinindo");
             return;
+        }
+
+        // contas consecutivas, por exemplo 2 + 2 + 2
+        if (calc.getOperador() != '\0' && !resultadoTexto.getText().isEmpty()) {
+            double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
+            System.out.println(numero);
+            calc.setNum2(numero);
+            calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
+            resultadoTexto.setText(formatarResultado(calc.getResultado()));
+            calc.addCalculo(reviewTexto.getText() + " " + formatarResultado(calc.getNum2()) + " = " + resultadoTexto.getText());
+            calc.setNum1(calc.getResultado());
         }
 
         // lógica padrao
