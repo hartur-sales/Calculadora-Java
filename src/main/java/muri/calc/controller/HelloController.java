@@ -201,39 +201,24 @@ public class HelloController {
             operadorTemporario = '%';
         }
 
-
-        // essa parte corrige o operador, caso o usuario digite errado
-        // por exemplo, 8 + pode ser corrigido pra 8 /
-        if (calc.getOperador() != '\0' && resultadoTexto.getText().isEmpty()) {
-            calc.setOperador(operadorTemporario);
-            reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador());
-            return;
-        }
-
-        /*
-        // contas consecutivas, por exemplo 2 + 2 + 2
+        // executa o calculo atual e permite contas consecutivas
         if (calc.getOperador() != '\0' && !resultadoTexto.getText().isEmpty()) {
-            double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
-            System.out.println(numero);
-            calc.setNum2(numero);
-            calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
-            resultadoTexto.setText(formatarResultado(calc.getResultado()));
-            calc.addCalculo(reviewTexto.getText() + " " + formatarResultado(calc.getNum2()) + " = " + resultadoTexto.getText());
-            System.out.println(calc.getNum1() + " " + calc.getNum2());
-        }
-        */
+            double numeroAtual = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
+            calc.setNum2(numeroAtual);
 
-        // lógica padrao
-        if (!resultadoTexto.getText().isEmpty()) {
+            double resultado = calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2());
+            resultadoTexto.setText(formatarResultado(resultado));
+            calc.addCalculo(formatarResultado(calc.getNum1()) + " " + calc.getOperador() + " " + formatarResultado(calc.getNum2()) + " = " + formatarResultado(resultado));
+            calc.setNum1(resultado);  // salva o resultado parcial para a proxima operação
+        } else if (!resultadoTexto.getText().isEmpty()) {
+            // caso seja a primeira operação
             double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
             calc.setNum1(numero);
-            resultadoTexto.setText("");
-        } else {
-            return;
         }
 
         calc.setOperador(operadorTemporario);
         reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador());
+        resultadoTexto.setText("");
         calc.setResultadoCalculado(false);
     }
 
@@ -256,18 +241,17 @@ public class HelloController {
         try {
             if (!resultadoTexto.getText().isEmpty()) {
                 double num2 = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
-                if (calc.getOperador() != '\0') {
-                    calc.setNum2(num2);
-                    reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador() + " "
-                            + formatarResultado(calc.getNum2()) + " =");
-                    calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
-                    resultadoTexto.setText(formatarResultado(calc.getResultado()));
-                } else {
-                    reviewTexto.setText(formatarResultado(num2) + " =");
-                    resultadoTexto.setText(formatarResultado(num2));
-                }
+                calc.setNum2(num2);
+                double resultado = calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2());
+
+                reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador() + " " + formatarResultado(num2) + " =");
+                resultadoTexto.setText(formatarResultado(resultado));
+                //calc.setNum1(resultado); // Armazena o resultado final em Num1 para futuras operações
+
                 calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
-            } else if (calc.getOperador() != '\0') {
+                calc.setOperadorSelecionado(false);
+                calc.setResultadoCalculado(true);
+            } else if (calc.getOperador() != '\0') { // se a pessoa digitar apenas o num1 e apertar no igual
                 double num2 = calc.getNum1();
                 calc.setNum2(num2);
                 reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador() + " "
