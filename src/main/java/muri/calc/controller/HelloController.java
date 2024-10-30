@@ -241,27 +241,31 @@ public class HelloController {
         try {
             if (!resultadoTexto.getText().isEmpty()) {
                 double num2 = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
-                calc.setNum2(num2);
-                double resultado = calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2());
-
-                reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador() + " " + formatarResultado(num2) + " =");
-                resultadoTexto.setText(formatarResultado(resultado));
-                //calc.setNum1(resultado); // Armazena o resultado final em Num1 para futuras operações
-
+                if (calc.getOperador() != '\0') {
+                    calc.setNum2(num2);
+                    reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador() + " "
+                            + formatarResultado(calc.getNum2()) + " =");
+                    calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
+                    resultadoTexto.setText(formatarResultado(calc.getResultado()));
+                    calc.setNum1(calc.getResultado());
+                } else {
+                    reviewTexto.setText(formatarResultado(num2) + " =");
+                    resultadoTexto.setText(formatarResultado(num2));
+                }
                 calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
-                calc.setOperadorSelecionado(false);
-                calc.setResultadoCalculado(true);
-            } else if (calc.getOperador() != '\0') { // se a pessoa digitar apenas o num1 e apertar no igual
+            } else if (calc.getOperador() != '\0') {
                 double num2 = calc.getNum1();
                 calc.setNum2(num2);
                 reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador() + " "
                         + formatarResultado(calc.getNum2()) + " =");
                 calc.setResultado(calc.definirOperacao(calc.getNum1(), calc.getOperador(), calc.getNum2()));
                 resultadoTexto.setText(formatarResultado(calc.getResultado()));
+                calc.setNum1(calc.getResultado());
                 calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
             }
             calc.setOperadorSelecionado(false);
             calc.setResultadoCalculado(true);
+            calc.setResultado('\0');
         } catch (ArithmeticException | ParseException e) {
             exibirErro(e.getMessage());
         }
