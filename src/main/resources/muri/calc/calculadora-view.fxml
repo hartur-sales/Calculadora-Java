@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="Infinity" maxWidth="Infinity" spacing="15.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="muri.calc.controller.HelloController">
+<VBox maxHeight="Infinity" maxWidth="Infinity" spacing="15.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="muri.calc.controller.CalculadoraController">
     <!-- TE AMO MT TAYLOR -->
     <padding>
         <Insets bottom="32.0" left="34.0" right="32.0" top="12.0" />

@@ -23,7 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import muri.calc.controller.HelloController;
+import muri.calc.controller.CalculadoraController;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -47,7 +47,7 @@ public class CalculadoraView extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles/calculadora.css")).toExternalForm());
 
-        HelloController controller = fxmlLoader.getController();
+        CalculadoraController controller = fxmlLoader.getController();
         controller.setScene(scene);
 
         //adiciona o icone do programa

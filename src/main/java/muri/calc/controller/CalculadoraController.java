@@ -42,7 +42,7 @@ import java.util.Objects;
  * @brief Class HelloController
  */
 
-public class HelloController {
+public class CalculadoraController {
     //TE AMO TAYLOR SWIFT
     private Scene scene;
     private final NumberFormat FORMATAR = NumberFormat.getInstance(Locale.forLanguageTag("pt-BR"));
@@ -201,7 +201,7 @@ public class HelloController {
             operadorTemporario = '%';
         }
 
-        // executa o calculo atual e permite contas consecutivas
+        // permite contas consecutivas e que o usuario altere o operador antes de digitar o segundo numero
         if (calc.isOperadorSelecionado() && !resultadoTexto.getText().isEmpty()) {
             double numeroAtual = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
             calc.setNum2(numeroAtual);
