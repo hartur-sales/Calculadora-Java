@@ -80,28 +80,34 @@ public class CalculadoraController {
 
     private void typewriterAtMyApartment() {
         scene.setOnKeyPressed(event -> {
-            //System.out.println("Tecla pressionada: " + event.getCode());
             try {
-                switch (event.getCode()) {
-                    case ESCAPE -> limpar();
-                    case BACK_SPACE -> botaoGerenClicado(new ActionEvent(botaoApagar, Event.NULL_SOURCE_TARGET));
-                    case PERIOD, DECIMAL, COMMA ->
-                            botaoGerenClicado(new ActionEvent(botaoDecimal, Event.NULL_SOURCE_TARGET));
-                    case ENTER -> botaoIgualClicado();
-                    case ADD -> botaoOperacaoClicado(new ActionEvent(botaoSomar, Event.NULL_SOURCE_TARGET));
-                    case SUBTRACT -> botaoOperacaoClicado(new ActionEvent(botaoSubtrair, Event.NULL_SOURCE_TARGET));
-                    case MULTIPLY -> botaoOperacaoClicado(new ActionEvent(botaoMultiplicar, Event.NULL_SOURCE_TARGET));
-                    case DIVIDE -> botaoOperacaoClicado(new ActionEvent(botaoDividir, Event.NULL_SOURCE_TARGET));
-                    case DIGIT0, NUMPAD0 -> lidarNumeros("0");
-                    case DIGIT1, NUMPAD1 -> lidarNumeros("1");
-                    case DIGIT2, NUMPAD2 -> lidarNumeros("2");
-                    case DIGIT3, NUMPAD3 -> lidarNumeros("3");
-                    case DIGIT4, NUMPAD4 -> lidarNumeros("4");
-                    case DIGIT5, NUMPAD5 -> lidarNumeros("5");
-                    case DIGIT6, NUMPAD6 -> lidarNumeros("6");
-                    case DIGIT7, NUMPAD7 -> lidarNumeros("7");
-                    case DIGIT8, NUMPAD8 -> lidarNumeros("8");
-                    case DIGIT9, NUMPAD9 -> lidarNumeros("9");
+                // ignora os botões de operaçao caso um erro esteja sendo exibido
+                if (calc.isExibindoErro()) {
+                    switch (event.getCode()) {
+                        case DIGIT0, NUMPAD0, DIGIT1, NUMPAD1, DIGIT2, NUMPAD2, DIGIT3, NUMPAD3, DIGIT4, NUMPAD4,
+                             DIGIT5, NUMPAD5, DIGIT6, NUMPAD6, DIGIT7, NUMPAD7, DIGIT8, NUMPAD8, DIGIT9, NUMPAD9 -> {
+                            limpar();
+                            lidarNumeros(event.getText());
+                        }
+                        case ESCAPE -> limpar();
+                        case BACK_SPACE -> botaoGerenClicado(new ActionEvent(botaoApagar, Event.NULL_SOURCE_TARGET));
+                        case PERIOD, DECIMAL, COMMA -> botaoGerenClicado(new ActionEvent(botaoDecimal, Event.NULL_SOURCE_TARGET));
+                    }
+                } else {
+                    switch (event.getCode()) {
+                        case ESCAPE -> limpar();
+                        case BACK_SPACE -> botaoGerenClicado(new ActionEvent(botaoApagar, Event.NULL_SOURCE_TARGET));
+                        case PERIOD, DECIMAL, COMMA -> botaoGerenClicado(new ActionEvent(botaoDecimal, Event.NULL_SOURCE_TARGET));
+                        case ENTER -> botaoIgualClicado();
+                        case ADD -> botaoOperacaoClicado(new ActionEvent(botaoSomar, Event.NULL_SOURCE_TARGET));
+                        case SUBTRACT -> botaoOperacaoClicado(new ActionEvent(botaoSubtrair, Event.NULL_SOURCE_TARGET));
+                        case MULTIPLY -> botaoOperacaoClicado(new ActionEvent(botaoMultiplicar, Event.NULL_SOURCE_TARGET));
+                        case DIVIDE -> botaoOperacaoClicado(new ActionEvent(botaoDividir, Event.NULL_SOURCE_TARGET));
+                        case DIGIT0, NUMPAD0, DIGIT1, NUMPAD1, DIGIT2, NUMPAD2, DIGIT3, NUMPAD3, DIGIT4, NUMPAD4,
+                             DIGIT5, NUMPAD5, DIGIT6, NUMPAD6, DIGIT7, NUMPAD7, DIGIT8, NUMPAD8, DIGIT9, NUMPAD9 -> {
+                            lidarNumeros(event.getText());
+                        }
+                    }
                 }
             } catch (ParseException e) {
                 throw new RuntimeException(e);
@@ -255,11 +261,15 @@ public class CalculadoraController {
                     resultadoTexto.setText(formatarResultado(calc.getResultado()));
                     calc.setNum1(calc.getResultado());
                 } else {
+                    // se o usuário digitar apenas um numero e apertar igual
+                    // o programa computa apenas como 5 =
                     reviewTexto.setText(formatarResultado(num2) + " =");
                     resultadoTexto.setText(formatarResultado(num2));
                 }
                 calc.addCalculo(reviewTexto.getText() + " " + resultadoTexto.getText());
             } else if (calc.getOperador() != '\0') {
+                // repete a última operação, caso o usuario digite apenas 5 + e aperte igual
+                // o programa computa a operaçao como 5 + 5
                 double num2 = calc.getNum1();
                 calc.setNum2(num2);
                 reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador() + " "
@@ -310,7 +320,6 @@ public class CalculadoraController {
         botaoPorcent.setDisable(b);
         botaoRaiz.setDisable(b);
         botaoMudarSinal.setDisable(b);
-        botaoDecimal.setDisable(b);
     }
 
     private String formatarResultado(double valor) {
