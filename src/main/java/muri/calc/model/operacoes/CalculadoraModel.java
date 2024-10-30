@@ -45,7 +45,7 @@ public class CalculadoraModel {
     public void addCalculo(String calculoFeito) {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime data = LocalDateTime.now();
-        logging.add(data.format(fmt)+" -> "+calculoFeito);
+        logging.add(data.format(fmt) + " -> " + calculoFeito);
     }
 
     public double getNum1() {
@@ -126,6 +126,9 @@ public class CalculadoraModel {
     }
 
     public double calcularRaiz(double valor) {
+        if (valor < 0) {
+            throw new ArithmeticException("Entrada inválida");
+        }
         return Math.sqrt(valor);
     }
 

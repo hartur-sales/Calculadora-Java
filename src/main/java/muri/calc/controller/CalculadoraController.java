@@ -225,16 +225,21 @@ public class CalculadoraController {
 
     public void botaoRaizClicado() throws ParseException {
         if (!resultadoTexto.getText().isEmpty()) {
-            double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
-            calc.setNum1(numero);
-            calc.setOperador('r');
-            calc.setResultado(calc.calcularRaiz(numero));
-            reviewTexto.setText("√" + formatarResultado(calc.getNum1()));
-            resultadoTexto.setText(formatarResultado(calc.getResultado()));
-            calc.setNum1(calc.getResultado());
-            calc.addCalculo(reviewTexto.getText() + " = " + resultadoTexto.getText());
-            calc.setResultadoCalculado(true);
-            botaoIgual.setDisable(true);
+            try {
+                double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
+                calc.setNum1(numero);
+                calc.setOperador('r');
+                reviewTexto.setText("√" + formatarResultado(calc.getNum1()));
+                calc.setResultado(calc.calcularRaiz(numero));
+                reviewTexto.setText("√" + formatarResultado(calc.getNum1()));
+                resultadoTexto.setText(formatarResultado(calc.getResultado()));
+                calc.setNum1(calc.getResultado());
+                calc.addCalculo(reviewTexto.getText() + " = " + resultadoTexto.getText());
+                calc.setResultadoCalculado(true);
+                botaoIgual.setDisable(true);
+            } catch (ArithmeticException e) {
+                exibirErro(e.getMessage());
+            }
         }
     }
 
