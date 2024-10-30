@@ -202,7 +202,7 @@ public class HelloController {
         }
 
         // executa o calculo atual e permite contas consecutivas
-        if (calc.getOperador() != '\0' && !resultadoTexto.getText().isEmpty()) {
+        if (calc.isOperadorSelecionado() && !resultadoTexto.getText().isEmpty()) {
             double numeroAtual = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
             calc.setNum2(numeroAtual);
 
@@ -210,7 +210,7 @@ public class HelloController {
             resultadoTexto.setText(formatarResultado(resultado));
             calc.addCalculo(formatarResultado(calc.getNum1()) + " " + calc.getOperador() + " " + formatarResultado(calc.getNum2()) + " = " + formatarResultado(resultado));
             calc.setNum1(resultado);  // salva o resultado parcial para a proxima operação
-        } else if (!resultadoTexto.getText().isEmpty()) {
+        } else  if (!resultadoTexto.getText().isEmpty()) {
             // caso seja a primeira operação
             double numero = FORMATAR.parse(resultadoTexto.getText()).doubleValue();
             calc.setNum1(numero);
@@ -219,6 +219,7 @@ public class HelloController {
         calc.setOperador(operadorTemporario);
         reviewTexto.setText(formatarResultado(calc.getNum1()) + " " + calc.getOperador());
         resultadoTexto.setText("");
+        calc.setOperadorSelecionado(true);
         calc.setResultadoCalculado(false);
     }
 
@@ -265,7 +266,6 @@ public class HelloController {
             }
             calc.setOperadorSelecionado(false);
             calc.setResultadoCalculado(true);
-            calc.setResultado('\0');
         } catch (ArithmeticException | ParseException e) {
             exibirErro(e.getMessage());
         }
