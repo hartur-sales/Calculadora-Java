@@ -23,8 +23,12 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import muri.calc.model.historico.HistoricoModel;
@@ -64,10 +68,13 @@ public class CalculadoraController {
     private Button botaoMudarSinal, botaoAc, botaoDecimal, botaoApagar, botaoTema;
 
     @FXML
-    private Label resultadoTexto, reviewTexto;
+    public Label resultadoTexto, reviewTexto;
 
     @FXML
     private ImageView imagemTema, deleteImagem;
+
+    @FXML
+    public VBox textVbox;
 
     private final String temaEscuro = Objects.requireNonNull(getClass().getResource("/styles/calculadora.css")).toExternalForm();
     private final String temaClaro = Objects.requireNonNull(getClass().getResource("/styles/calculadora-branca.css")).toExternalForm();
@@ -104,9 +111,8 @@ public class CalculadoraController {
                         case MULTIPLY -> botaoOperacaoClicado(new ActionEvent(botaoMultiplicar, Event.NULL_SOURCE_TARGET));
                         case DIVIDE -> botaoOperacaoClicado(new ActionEvent(botaoDividir, Event.NULL_SOURCE_TARGET));
                         case DIGIT0, NUMPAD0, DIGIT1, NUMPAD1, DIGIT2, NUMPAD2, DIGIT3, NUMPAD3, DIGIT4, NUMPAD4,
-                             DIGIT5, NUMPAD5, DIGIT6, NUMPAD6, DIGIT7, NUMPAD7, DIGIT8, NUMPAD8, DIGIT9, NUMPAD9 -> {
-                            lidarNumeros(event.getText());
-                        }
+                             DIGIT5, NUMPAD5, DIGIT6, NUMPAD6, DIGIT7, NUMPAD7, DIGIT8, NUMPAD8, DIGIT9, NUMPAD9 ->
+                                lidarNumeros(event.getText());
                     }
                 }
             } catch (ParseException e) {
@@ -125,8 +131,35 @@ public class CalculadoraController {
 
     @FXML
     private void initialize() {
+        resultadoTexto.setStyle("-fx-font-size: " + 70 + "px;");
         resultadoTexto.setText("");
         reviewTexto.setText("");
+
+        // permite que resultadoTexto tenha a fonte ajustada automaticamente
+        // https://stackoverflow.com/questions/54495381/how-to-dynamically-change-font-size-in-ui-to-always-be-the-same-width-in-javafx
+        double defaultFontSize = 70;
+        Font defaultFont = Font.font("Hind Siliguri Medium", 70);
+
+        TextField tf = new TextField(resultadoTexto.getText());
+        resultadoTexto.setStyle("-fx-font-size: " + defaultFontSize + "px;");
+
+        resultadoTexto.textProperty().addListener((observable, oldValue, newValue) -> {
+            double MAX_TEXT_WIDTH = textVbox.getWidth();
+
+            Text tmpText = new Text(newValue);
+            tmpText.setFont(defaultFont);
+
+            double textWidth = tmpText.getLayoutBounds().getWidth();
+
+            if (textWidth <= MAX_TEXT_WIDTH) {
+                resultadoTexto.setStyle("-fx-font-size: " + defaultFontSize + "px;");
+            } else {
+                double newFontSize = defaultFontSize * MAX_TEXT_WIDTH / textWidth;
+                resultadoTexto.setStyle("-fx-font-size: " + newFontSize + "px;");
+            }
+
+        });
+        resultadoTexto.textProperty().bindBidirectional(tf.textProperty());
     }
 
     public void mudarTema() {
@@ -296,13 +329,11 @@ public class CalculadoraController {
         calc.setResultadoCalculado(false);
         resultadoTexto.setText("");
         reviewTexto.setText("");
-        resultadoTexto.setStyle("-fx-font-size: " + 70 + "px;");
         calc.setExibindoErro(false);
         desabiltarBotoes(false);
     }
 
     private void exibirErro(String mensagemErro) {
-        resultadoTexto.setStyle("-fx-font-size: " + 20 + "px;");
         resultadoTexto.setText(mensagemErro);
         calc.setOperadorSelecionado(false);
         calc.setResultadoCalculado(true);
