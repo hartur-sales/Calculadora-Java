@@ -62,7 +62,7 @@ public class HistoricoModel {
         //escreverHistorico(historyFile, calculoList);
 
         if (outDir.exists() || outDir.mkdirs()) {
-            File historyFile = new File(outDir, "calculos.csv");
+            File historyFile = new File("user.home", "calculos.csv");
             escreverHistorico(historyFile, calculoList);
         } else {
             System.err.println("Falha ao criar diretório: " + resourcesPath);
