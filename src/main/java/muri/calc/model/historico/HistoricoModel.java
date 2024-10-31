@@ -18,8 +18,6 @@
 
 package muri.calc.model.historico;
 
-import muri.calc.model.operacoes.CalculadoraModel;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -33,7 +31,11 @@ import java.util.List;
  */
 
 public class HistoricoModel {
-    public CalculadoraModel calculoModel = new CalculadoraModel();
+    enum Salvar {
+        IDE,
+        JAR;
+    }
+    private Salvar salvar = Salvar.IDE; //alterar na hora de criar o JAR
 
     public void deletarArquivo() {
         String resourcesPath = System.getProperty("user.dir") + "/src/main/resources/out";
@@ -54,18 +56,19 @@ public class HistoricoModel {
     }
 
     public void criarArquivo(List<String> calculoList) {
-        String resourcesPath = System.getProperty("user.dir") + "/src/main/resources/out";
-        File outDir = new File(resourcesPath);
+        if (salvar == Salvar.IDE) {
+            String resourcesPath = System.getProperty("user.dir") + "/src/main/resources/out";
+            File outDir = new File(resourcesPath);
 
-        //ao criar o jar, trocar essa parte do código
-        //File historyFile = new File(System.getProperty("user.dir"), "calculos.csv");
-        //escreverHistorico(historyFile, calculoList);
-
-        if (outDir.exists() || outDir.mkdirs()) {
-            File historyFile = new File(outDir, "calculos.csv");
-            escreverHistorico(historyFile, calculoList);
-        } else {
-            System.err.println("Falha ao criar diretório: " + resourcesPath);
+            if (outDir.exists() || outDir.mkdirs()) {
+                File historyFile = new File(outDir, "calculos.csv");
+                escreverHistorico(historyFile, calculoList);
+            } else {
+                System.err.println("Falha ao criar diretório: " + resourcesPath);
+            }
+        } else if (salvar == Salvar.JAR) {
+            File historyFileJar = new File(System.getProperty("user.dir"), "calculos.csv");
+            escreverHistorico(historyFileJar, calculoList);
         }
 
     }
