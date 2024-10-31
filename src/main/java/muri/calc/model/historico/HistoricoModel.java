@@ -57,16 +57,21 @@ public class HistoricoModel {
         String resourcesPath = System.getProperty("user.dir") + "/src/main/resources/out";
         File outDir = new File(resourcesPath);
 
+        //ao criar o jar, trocar essa parte do código
+        //File historyFile = new File(System.getProperty("user.dir"), "calculos.csv");
+        //escreverHistorico(historyFile, calculoList);
+
         if (outDir.exists() || outDir.mkdirs()) {
-            File historyFile = new File(outDir, "calculos.csv");
+            File historyFile = new File("user.home", "calculos.csv");
             escreverHistorico(historyFile, calculoList);
         } else {
             System.err.println("Falha ao criar diretório: " + resourcesPath);
         }
+
     }
 
     private void escreverHistorico(File historyFile, List<String> calculoList) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(historyFile))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(historyFile, true))) {
             for (String calculo : calculoList) {
                 bw.write(calculo);
                 bw.newLine();
