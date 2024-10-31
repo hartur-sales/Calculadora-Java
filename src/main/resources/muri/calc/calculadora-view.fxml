@@ -27,7 +27,7 @@
          </VBox.margin>
         </Button>
     </VBox>
-    <VBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
+    <VBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS" fx:id="textVbox">
         <Label fx:id="reviewTexto" styleClass="label-review" text="70 + 12 =" VBox.vgrow="ALWAYS" />
         <Label fx:id="resultadoTexto" styleClass="label-resultado" text="82" VBox.vgrow="ALWAYS">
          <VBox.margin>
