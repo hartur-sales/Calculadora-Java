@@ -10,9 +10,9 @@ Este projeto é uma calculadora simples, com operações básicas, desenvolvida 
 - **Exportar histórico**: O histórico de operações é exportado automaticamente em um arquivo .csv.
 
 ## Screenshots
-![image](https://github.com/user-attachments/assets/6b1b68c3-badf-4df2-ae8c-fdfb64a2799e)  ![image](https://github.com/user-attachments/assets/a77aec71-35f2-4479-971f-61d3f3075d0e)
+![Multiplicação no modo escuro](screenshots/modo%20escuro1.png) ![Potência no modo escuro](screenshots/modo%20escuro2.png)
 
-![image](https://github.com/user-attachments/assets/6dd82bad-2252-4d7c-a496-226dacaa35ae)  ![image](https://github.com/user-attachments/assets/021bd227-183f-4549-9574-6393411533a5)
+![Erro no modo claro](screenshots/modo%20claro1.png)  ![Subtração no modo claro](screenshots/modo%20claro2.png)
 
 
 ## Instalação
