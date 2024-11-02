@@ -213,9 +213,17 @@ public class CalculadoraController {
                 resultadoTexto.setText(textoAtual + ",");
             }
         } else if (e.getSource() == botaoMudarSinal) {
-            if (!textoAtual.isEmpty()) {
-                double numero = Double.parseDouble(textoAtual) * -1;
-                resultadoTexto.setText(formatarResultado(numero));
+            try {
+                String input = resultadoTexto.getText();
+                if (!input.isEmpty()) {
+                    Number num = FORMATAR.parse(input);
+                    double valor = num.doubleValue();
+                    valor = -valor;
+                    resultadoTexto.setText(FORMATO_DECIMAL.format(valor));
+                }
+            } catch (ParseException parseException) {
+                resultadoTexto.setText("Erro de formatação");
+                parseException.printStackTrace();
             }
         } else if (e.getSource() == botaoApagar && !textoAtual.isEmpty()) {
             resultadoTexto.setText(textoAtual.substring(0, textoAtual.length() - 1));
